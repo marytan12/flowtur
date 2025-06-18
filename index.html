@@ -1,0 +1,348 @@
+#EstoeslabasededdatosdeflowturFC2025#
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOWTUR - Torneo de Fútbol 7</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Darker blue background */
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Custom gradient for titles */
+        .text-gradient {
+            background-image: linear-gradient(45deg, #00f5a0, #ff007f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Custom button styles */
+        .btn-pink {
+            background-color: #ff007f;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-pink:hover {
+            background-color: #ff3399;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4);
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(135deg, rgba(0, 245, 160, 0.15) 0%, rgba(255, 0, 127, 0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            pointer-events: none;
+        }
+        
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Custom focus styles for form inputs */
+        .form-input:focus {
+            border-color: #00f5a0;
+            box-shadow: 0 0 0 3px rgba(0, 245, 160, 0.3);
+            outline: none;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header class="bg-gray-900/50 backdrop-blur-sm fixed w-full z-20 top-0 left-0 border-b border-gray-700">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <!-- === TU ICONO AQUÍ === -->
+                <img src="flowturicon.png" 
+                     alt="Icono FLOWTUR" 
+                     class="h-12 w-12" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/48x48/111827/00f5a0?text=FT';">
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Sobre el Torneo</a>
+                <a href="#rules" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Reglas</a>
+                <a href="#register" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">Inscribirse</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Sobre el Torneo</a>
+            <a href="#rules" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Reglas</a>
+            <a href="#register" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Inscribirse</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 relative z-10">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center">
+            <div class="bg-black bg-opacity-50 p-8 md:p-16 rounded-xl">
+                <div class="fade-in-down">
+                    <h2 class="text-5xl md:text-7xl font-black uppercase">
+                        <span class="text-gradient">FLOWTUR 2025</span>
+                    </h2>
+                    <p class="text-xl md:text-2xl mt-4 mb-8 text-gray-200 max-w-3xl mx-auto">El torneo de fútbol 7 que estabas esperando. Inscríbete, demuestra tu talento y compite por la gloria.</p>
+                    <a href="#register" class="bg-gradient-to-r from-cyan-400 to-pink-500 hover:from-pink-500 hover:to-cyan-400 text-white font-bold py-4 px-8 rounded-full text-lg uppercase shadow-lg transform hover:scale-105 transition-all duration-300">
+                        ¡Inscríbete ahora!
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <div class="container mx-auto px-6">
+                <h3 class="text-4xl font-bold text-center mb-12 fade-in-down">Sobre el <span class="text-gradient">Torneo</span></h3>
+                <div class="max-w-4xl mx-auto glass-card p-8 rounded-xl shadow-lg fade-in-down" style="animation-delay: 0.2s;">
+                    <p class="text-lg leading-relaxed text-center">
+                        Bienvenidos a FLOWTUR FUTBOL, competición de fútbol 7. Nuestro objetivo es crear una experiencia inolvidable para todos los jugadores. Apúntate de forma individual y nosotros nos encargaremos de formar los equipos. ¡EN POCO ANUNCIAMOS FECHAS!, asi que estate atento.                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="rules" class="py-20 bg-gray-900/30">
+            <div class="container mx-auto px-6">
+                <h3 class="text-4xl font-bold text-center mb-12 fade-in-down">Reglamento del <span class="text-gradient">Torneo</span></h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Rule Card 1 -->
+                    <div class="glass-card p-6 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 fade-in-down" style="animation-delay: 0.3s;">
+                        <i class="fas fa-users text-4xl text-pink-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Formato</h4>
+                        <p>Partidos de Fútbol 7 (6 jugadores + portero). Los equipos se formarán con los jugadores inscritos.</p>
+                    </div>
+                    <!-- Rule Card 2 -->
+                    <div class="glass-card p-6 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 fade-in-down" style="animation-delay: 0.4s;">
+                        <i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Duración</h4>
+                        <p>Partidos de 2 partes de 20 minutos cada una, con un descanso de 5 minutos.</p>
+                    </div>
+                    <!-- Rule Card 3 -->
+                    <div class="glass-card p-6 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 fade-in-down" style="animation-delay: 0.5s;">
+                        <i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Fair Play</h4>
+                        <p>Se espera un comportamiento deportivo. Las faltas graves o conductas antideportivas serán sancionadas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Registration Section -->
+        <section id="register" class="py-20 bg-gray-900/30">
+            <div class="container mx-auto px-6">
+                <h3 class="text-4xl font-bold text-center mb-12">Inscripción de <span class="text-gradient">Jugador</span></h3>
+                <div class="max-w-2xl mx-auto">
+                    <form id="registration-form" class="glass-card p-8 rounded-xl shadow-lg space-y-6">
+                        <div>
+                            <label for="player-name" class="block text-sm font-medium text-gray-300 mb-2">Nombre Completo</label>
+                            <input type="text" id="player-name" name="player-name" required class="form-input w-full bg-gray-800 border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="player-email" class="block text-sm font-medium text-gray-300 mb-2">Email de Contacto</label>
+                            <input type="email" id="player-email" name="player-email" required class="form-input w-full bg-gray-800 border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="player-phone" class="block text-sm font-medium text-gray-300 mb-2">Teléfono de Contacto</label>
+                            <input type="tel" id="player-phone" name="player-phone" required class="form-input w-full bg-gray-800 border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="player-age" class="block text-sm font-medium text-gray-300 mb-2">Edad</label>
+                            <input type="number" id="player-age" name="player-age" required min="16" class="form-input w-full bg-gray-800 border-gray-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <button type="submit" id="submit-button" class="w-full btn-pink text-white font-bold py-3 px-4 rounded-md flex items-center justify-center">
+                                <span id="submit-text">Enviar Inscripción</span>
+                                <i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-transparent py-8 mt-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+             <p class="text-sm">Desarrollada por Mario Rodriguez en Valladolid.</p>
+             <p class="text-xs mt-2">&copy; 2025 FLOWTUR. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transform -translate-y-10 transition-all duration-500 z-50">
+        <p id="toast-message">Mensaje de notificación</p>
+    </div>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Supabase Client -->
+    <script type="module">
+        // Import Supabase client
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        // --- Particles.js Initialization ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {"value": 50, "density": {"enable": true, "value_area": 800}},
+                "color": {"value": "#ffffff"},
+                "shape": {"type": "circle", "stroke": {"width": 0, "color": "#000000"}, "polygon": {"nb_sides": 5}},
+                "opacity": {"value": 0.5, "random": true, "anim": {"enable": true, "speed": 1, "opacity_min": 0.1, "sync": false}},
+                "size": {"value": 3, "random": true, "anim": {"enable": false, "speed": 40, "size_min": 0.1, "sync": false}},
+                "line_linked": {"enable": true, "distance": 150, "color": "#ff007f", "opacity": 0.2, "width": 1},
+                "move": {"enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": {"enable": false, "rotateX": 600, "rotateY": 1200}}
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {"onhover": {"enable": true, "mode": "grab"}, "onclick": {"enable": true, "mode": "push"}, "resize": true},
+                "modes": {"grab": {"distance": 140, "line_linked": {"opacity": 0.5}}, "bubble": {"distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3}, "repulse": {"distance": 200, "duration": 0.4}, "push": {"particles_nb": 4}, "remove": {"particles_nb": 2}}
+            },
+            "retina_detect": true
+        });
+
+        // --- Supabase Configuration ---
+        const SUPABASE_URL = 'https://nxthxjarwushdcpwxgmo.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dGh4amFyd3VzaGRjcHd4Z21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzM2NTMsImV4cCI6MjA2NTgwOTY1M30.pI4VcJRNGTDpzZsUHub33WqFL8DidAC1Vl3-4zzySkY';
+
+        if (!SUPABASE_URL || !SUPABASE_ANON_KEY || SUPABASE_URL.includes('YOUR_SUPABASE_URL')) {
+            console.warn("Supabase credentials are not configured.");
+        }
+        
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // --- UI Elements ---
+        const registrationForm = document.getElementById('registration-form');
+        const submitButton = document.getElementById('submit-button');
+        const submitText = document.getElementById('submit-text');
+        const submitSpinner = document.getElementById('submit-spinner');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // --- Event Listeners ---
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        registrationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!supabase || !SUPABASE_URL || SUPABASE_URL.includes('YOUR_SUPABASE_URL')) {
+                 displayToast("La base de datos no está configurada.", true);
+                 return;
+            }
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('players')
+                .insert([
+                    { 
+                        player_name: registrationForm['player-name'].value,
+                        player_email: registrationForm['player-email'].value,
+                        player_phone: registrationForm['player-phone'].value,
+                        player_age: registrationForm['player-age'].value,
+                    }
+                ]);
+            if (error) {
+                console.error('Error inserting data:', error);
+                displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
+            } else {
+                console.log('Data inserted successfully:', data);
+                displayToast('¡Inscripción realizada con éxito!');
+                registrationForm.reset();
+            }
+            setLoading(false);
+        });
+
+        // --- Functions ---
+        function setLoading(isLoading) {
+            submitButton.disabled = isLoading;
+            submitText.classList.toggle('hidden', isLoading);
+            submitSpinner.classList.toggle('hidden', !isLoading);
+        }
+
+        function displayToast(message, isError = false) {
+            toastMessage.textContent = message;
+            toast.className = toast.className.replace(/bg-(green|red)-500/, isError ? 'bg-red-500' : 'bg-green-500');
+            toast.classList.remove('opacity-0', '-translate-y-10');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-10');
+            }, 3000);
+        }
+
+    </script>
+</body>
+</html>
+
