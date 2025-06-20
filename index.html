@@ -85,6 +85,27 @@
         #mobile-menu {
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
+
+        /* FAQ Accordion styles */
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease;
+            padding: 0 1.5rem;
+        }
+        .faq-item.open .faq-answer {
+             max-height: 200px; /* Adjust as needed */
+             padding: 1rem 1.5rem 1.5rem;
+        }
+        .faq-item.open .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        .faq-item .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
         
         /* Fade-in animation */
         @keyframes fadeIn {
@@ -93,6 +114,7 @@
         }
         .fade-in {
             animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
         }
     </style>
 </head>
@@ -102,25 +124,26 @@
 
     <!-- Header -->
     <header class="bg-slate-900/60 backdrop-blur-lg fixed w-full z-20 top-0 left-0 border-b border-slate-800">
-        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
-                <!-- === TU ICONO AQUÍ === -->
                 <img src="flowturicon.png" 
                      alt="Icono FLOWTUR" 
-                     class="h-10 w-10 sm:h-12 sm:w-12" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/48x48/0f172a/22d3ee?text=FT';">
+                     class="h-12 w-12 sm:h-16 sm:w-16" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/64x64/0f172a/22d3ee?text=FT';">
                 <span class="text-xl font-bold text-white">FLOWTUR</span>
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Sobre el Torneo</a>
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="#about" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Sobre Nosotros</a>
                 <a href="#rules" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Reglas</a>
+                <a href="#prizes" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Premios</a>
+                <a href="#faq" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">FAQ</a>
                 <a href="#register" class="btn-primary text-white font-bold py-2 px-5 rounded-full">Inscribirse</a>
             </div>
             
             <!-- Mobile Menu Button -->
-            <div class="md:hidden">
+            <div class="lg:hidden">
                 <button id="menu-btn" class="text-white focus:outline-none" aria-label="Abrir menú">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
@@ -128,9 +151,11 @@
         </nav>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-lg transform -translate-y-4 opacity-0">
-            <a href="#about" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Sobre el Torneo</a>
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-lg transform -translate-y-4 opacity-0">
+            <a href="#about" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Sobre Nosotros</a>
             <a href="#rules" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Reglas</a>
+            <a href="#prizes" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Premios</a>
+            <a href="#faq" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">FAQ</a>
             <a href="#register" class="mobile-menu-link block py-3 px-6 text-base text-cyan-400 font-bold hover:bg-slate-800">Inscribirse</a>
         </div>
     </header>
@@ -141,13 +166,13 @@
         <section class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
             <div class="max-w-4xl mx-auto">
                 <div class="fade-in">
-                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase">
+                    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black uppercase">
                         <span class="text-gradient">FLOWTUR 2025</span>
                     </h1>
-                    <p class="text-lg sm:text-xl lg:text-2xl mt-4 mb-8 text-slate-300 max-w-3xl mx-auto">
-                        El torneo de fútbol 7 que estabas esperando. Inscríbete, demuestra tu talento y compite.
+                    <p class="text-lg sm:text-xl lg:text-2xl mt-6 mb-10 text-slate-300 max-w-3xl mx-auto">
+                        El torneo de fútbol 7 que estabas esperando. Pasión, competición y fair play se unen en Valladolid.
                     </p>
-                    <a href="#register" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg uppercase shadow-lg inline-block">
+                    <a href="#register" class="btn-primary text-white font-bold py-4 px-10 rounded-full text-lg uppercase shadow-lg inline-block">
                         ¡Inscríbete ahora!
                     </a>
                 </div>
@@ -159,8 +184,8 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Sobre el <span class="text-gradient">Torneo</span></h2>
                 <div class="max-w-4xl mx-auto glass-card p-6 sm:p-10 rounded-2xl shadow-lg fade-in" style="animation-delay: 0.2s;">
-                    <p class="text-base sm:text-lg leading-relaxed text-center text-slate-300">
-                        Bienvenidos a FLOWTUR FUTBOL, competición de fútbol 7. Nuestro objetivo es crear una experiencia inolvidable para todos los jugadores. Apúntate de forma individual y nosotros nos encargaremos de formar los equipos. ¡EN POCO ANUNCIAMOS FECHAS!, así que estate atento.
+                    <p class="text-base sm:text-lg leading-relaxed text-slate-300 text-justify">
+                        ¡Bienvenidos a FLOWTUR! Más que un simple torneo, somos una comunidad de apasionados por el fútbol 7. Nuestro objetivo es crear una experiencia competitiva, divertida y memorable para todos los jugadores de Valladolid y alrededores. La inscripción es individual, lo que garantiza equipos equilibrados y la oportunidad de conocer a otros futbolistas. Nosotros nos encargamos de toda la organización para que tú solo te preocupes de disfrutar y darlo todo en el campo. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
                     </p>
                 </div>
             </div>
@@ -171,64 +196,102 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Reglamento del <span class="text-gradient">Torneo</span></h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Rule Card 1 -->
-                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.3s;">
-                        <i class="fas fa-users text-4xl text-pink-500 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2 text-white">Formato</h3>
-                        <p class="text-slate-400">Partidos de Fútbol 7 (6 jugadores + portero). Los equipos se formarán con los jugadores inscritos.</p>
+                    <!-- Rule Card 1-3 -->
+                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.1s;"><i class="fas fa-users text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Partidos de Fútbol 7 (6 jugadores + portero). Equipos formados por la organización.</p></div>
+                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.2s;"><i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Partidos de 2 partes de 20 min, con 5 min de descanso.</p></div>
+                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.3s;"><i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">Conducta antideportiva o faltas graves serán sancionadas.</p></div>
+                    <!-- Rule Card 4-6 -->
+                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.4s;"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Las sustituciones son ilimitadas y se pueden realizar en cualquier momento.</p></div>
+                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.5s;"><i class="fas fa-shirt text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Obligatorio uso de calzado adecuado. Se proporcionarán petos.</p></div>
+                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.6s;"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. Clasifican los mejores.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prizes Section -->
+        <section id="prizes" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Premios para los <span class="text-gradient">Campeones</span></h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-xl text-center fade-in border-2 border-yellow-400" style="animation-delay: 0.2s;">
+                        <i class="fas fa-trophy text-6xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2 text-white">1er Puesto</h3>
+                        <p class="text-slate-300">Trofeo de campeón + Medallas de oro + Premios de patrocinadores.</p>
                     </div>
-                    <!-- Rule Card 2 -->
-                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.4s;">
-                        <i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2 text-white">Duración</h3>
-                        <p class="text-slate-400">Partidos de 2 partes de 20 minutos cada una, con un descanso de 5 minutos.</p>
+                    <div class="glass-card p-8 rounded-xl text-center fade-in border-2 border-slate-400" style="animation-delay: 0.3s;">
+                        <i class="fas fa-award text-6xl text-slate-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2 text-white">2º Puesto</h3>
+                        <p class="text-slate-300">Medallas de plata + Descuentos en futuras ediciones.</p>
                     </div>
-                    <!-- Rule Card 3 -->
-                    <div class="glass-card p-6 rounded-xl text-center fade-in" style="animation-delay: 0.5s;">
-                        <i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3>
-                        <p class="text-slate-400">Se espera un comportamiento deportivo. Las faltas graves o conductas antideportivas serán sancionadas.</p>
+                    <div class="glass-card p-8 rounded-xl text-center fade-in border-2 border-orange-400" style="animation-delay: 0.4s;">
+                        <i class="fas fa-medal text-6xl text-orange-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2 text-white">3er Puesto</h3>
+                        <p class="text-slate-300">Medallas de bronce + Material deportivo.</p>
                     </div>
                 </div>
             </div>
         </section>
         
         <!-- Registration Section -->
-        <section id="register" class="py-16 sm:py-24">
+        <section id="register" class="py-16 sm:py-24 bg-slate-900/50">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Inscripción de <span class="text-gradient">Jugador</span></h2>
                 <div class="max-w-2xl mx-auto glass-card p-6 sm:p-8 rounded-2xl shadow-lg fade-in" style="animation-delay: 0.2s;">
                     <form id="registration-form" class="space-y-6">
-                        <div>
-                            <label for="player-name" class="block text-sm font-medium text-slate-300 mb-2">Nombre Completo</label>
-                            <input type="text" id="player-name" name="player-name" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
-                        </div>
-                        <div>
-                            <label for="player-email" class="block text-sm font-medium text-slate-300 mb-2">Email de Contacto</label>
-                            <input type="email" id="player-email" name="player-email" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
-                        </div>
-                        <div>
-                            <label for="player-phone" class="block text-sm font-medium text-slate-300 mb-2">Teléfono de Contacto</label>
-                            <input type="tel" id="player-phone" name="player-phone" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
-                        </div>
-                        <div>
-                            <label for="player-age" class="block text-sm font-medium text-slate-300 mb-2">Edad</label>
-                            <input type="number" id="player-age" name="player-age" required min="16" class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300">
-                        </div>
-                        <div>
-                            <button type="submit" id="submit-button" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-md flex items-center justify-center text-lg">
-                                <span id="submit-text">Enviar Inscripción</span>
-                                <i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i>
-                            </button>
-                        </div>
+                         <!-- Form fields remain the same -->
+                        <div><label for="player-name" class="block text-sm font-medium text-slate-300 mb-2">Nombre Completo</label><input type="text" id="player-name" name="player-name" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
+                        <div><label for="player-email" class="block text-sm font-medium text-slate-300 mb-2">Email de Contacto</label><input type="email" id="player-email" name="player-email" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
+                        <div><label for="player-phone" class="block text-sm font-medium text-slate-300 mb-2">Teléfono de Contacto</label><input type="tel" id="player-phone" name="player-phone" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
+                        <div><label for="player-age" class="block text-sm font-medium text-slate-300 mb-2">Edad</label><input type="number" id="player-age" name="player-age" required min="16" class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
+                        <div><button type="submit" id="submit-button" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-md flex items-center justify-center text-lg"><span id="submit-text">Enviar Inscripción</span><i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i></button></div>
                     </form>
                 </div>
             </div>
         </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Preguntas <span class="text-gradient">Frecuentes</span></h2>
+                <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item glass-card rounded-lg fade-in" style="animation-delay: 0.2s;">
+                        <div class="faq-question flex justify-between items-center p-6">
+                            <h3 class="font-semibold text-lg text-white">¿Necesito tener un equipo para inscribirme?</h3>
+                            <i class="fas fa-chevron-down text-cyan-400"></i>
+                        </div>
+                        <div class="faq-answer text-slate-300">
+                            <p>No, la inscripción es individual. Nosotros nos encargamos de crear los equipos de la manera más equilibrada posible para asegurar la competitividad y la diversión.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item glass-card rounded-lg fade-in" style="animation-delay: 0.3s;">
+                        <div class="faq-question flex justify-between items-center p-6">
+                            <h3 class="font-semibold text-lg text-white">¿Cuál es el coste de la inscripción?</h3>
+                            <i class="fas fa-chevron-down text-cyan-400"></i>
+                        </div>
+                        <div class="faq-answer text-slate-300">
+                            <p>El precio de la inscripción se anunciará junto con las fechas oficiales del torneo. El pago incluirá la participación, agua durante los partidos y el seguro correspondiente.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item glass-card rounded-lg fade-in" style="animation-delay: 0.4s;">
+                        <div class="faq-question flex justify-between items-center p-6">
+                            <h3 class="font-semibold text-lg text-white">¿Qué debo llevar a los partidos?</h3>
+                            <i class="fas fa-chevron-down text-cyan-400"></i>
+                        </div>
+                        <div class="faq-answer text-slate-300">
+                            <p>Debes traer tu propia ropa deportiva, espinilleras (recomendado) y botas de fútbol para césped artificial. Nosotros proporcionaremos los petos para diferenciar a los equipos y los balones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     
     <!-- Footer -->
-    <footer class="bg-transparent py-8 mt-12">
+    <footer class="bg-transparent py-8 mt-12 border-t border-slate-800">
         <div class="container mx-auto px-4 sm:px-6 text-center text-slate-400">
              <p class="text-sm">Desarrollada por Mario Rodríguez en Valladolid.</p>
              <p class="text-xs mt-2">&copy; 2025 FLOWTUR. Todos los derechos reservados.</p>
@@ -249,20 +312,8 @@
 
         // --- Particles.js Initialization ---
         particlesJS("particles-js", {
-            "particles": {
-                "number": {"value": 50, "density": {"enable": true, "value_area": 800}},
-                "color": {"value": "#ffffff"},
-                "shape": {"type": "circle"},
-                "opacity": {"value": 0.5, "random": true, "anim": {"enable": true, "speed": 1, "opacity_min": 0.1, "sync": false}},
-                "size": {"value": 3, "random": true},
-                "line_linked": {"enable": true, "distance": 150, "color": "#ec4899", "opacity": 0.2, "width": 1},
-                "move": {"enable": true, "speed": 2, "direction": "none", "out_mode": "out"}
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {"onhover": {"enable": true, "mode": "grab"}, "onclick": {"enable": true, "mode": "push"}, "resize": true},
-                "modes": {"grab": {"distance": 140, "line_linked": {"opacity": 0.5}}, "push": {"particles_nb": 4}}
-            },
+            "particles": {"number": {"value": 50, "density": {"enable": true, "value_area": 800}},"color": {"value": "#ffffff"},"shape": {"type": "circle"},"opacity": {"value": 0.5, "random": true, "anim": {"enable": true, "speed": 1, "opacity_min": 0.1, "sync": false}},"size": {"value": 3, "random": true},"line_linked": {"enable": true, "distance": 150, "color": "#ec4899", "opacity": 0.2, "width": 1},"move": {"enable": true, "speed": 2, "direction": "none", "out_mode": "out"}},
+            "interactivity": {"detect_on": "canvas","events": {"onhover": {"enable": true, "mode": "grab"}, "onclick": {"enable": true, "mode": "push"}, "resize": true},"modes": {"grab": {"distance": 140, "line_linked": {"opacity": 0.5}}, "push": {"particles_nb": 4}}},
             "retina_detect": true
         });
 
@@ -286,6 +337,7 @@
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        const faqAccordion = document.getElementById('faq-accordion');
 
         // --- Event Listeners ---
         // Toggle mobile menu
@@ -293,27 +345,31 @@
             const isHidden = mobileMenu.classList.contains('hidden');
             if (isHidden) {
                 mobileMenu.classList.remove('hidden');
-                setTimeout(() => {
-                    mobileMenu.classList.remove('opacity-0', '-translate-y-4');
-                }, 10);
+                setTimeout(() => { mobileMenu.classList.remove('opacity-0', '-translate-y-4'); }, 10);
             } else {
                 mobileMenu.classList.add('opacity-0', '-translate-y-4');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 300);
+                setTimeout(() => { mobileMenu.classList.add('hidden'); }, 300);
             }
         });
 
         // Close mobile menu when a link is clicked
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                 mobileMenu.classList.add('opacity-0', '-translate-y-4');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 300);
+                mobileMenu.classList.add('opacity-0', '-translate-y-4');
+                setTimeout(() => { mobileMenu.classList.add('hidden'); }, 300);
             });
         });
 
+        // FAQ Accordion Logic
+        if (faqAccordion) {
+            faqAccordion.addEventListener('click', (e) => {
+                const question = e.target.closest('.faq-question');
+                if (question) {
+                    const item = question.parentElement;
+                    item.classList.toggle('open');
+                }
+            });
+        }
 
         // Handle form submission
         registrationForm.addEventListener('submit', async (e) => {
@@ -323,18 +379,7 @@
                  return;
             }
             setLoading(true);
-            const { data, error } = await supabase
-                .from('players')
-                .insert([
-                    { 
-                        player_name: registrationForm['player-name'].value,
-                        player_email: registrationForm['player-email'].value,
-                        player_phone: registrationForm['player-phone'].value,
-                        player_age: registrationForm['player-age'].value,
-                    }
-                ])
-                .select(); // Use .select() to get back the inserted data
-
+            const { data, error } = await supabase.from('players').insert([{ player_name: registrationForm['player-name'].value, player_email: registrationForm['player-email'].value, player_phone: registrationForm['player-phone'].value, player_age: registrationForm['player-age'].value,}]).select();
             if (error) {
                 console.error('Error inserting data:', error);
                 displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
@@ -351,21 +396,14 @@
             submitButton.disabled = isLoading;
             submitText.classList.toggle('hidden', isLoading);
             submitSpinner.classList.toggle('hidden', !isLoading);
-            if (isLoading) {
-                submitButton.classList.add('cursor-not-allowed');
-            } else {
-                submitButton.classList.remove('cursor-not-allowed');
-            }
+            submitButton.classList.toggle('cursor-not-allowed', isLoading);
         }
 
         function displayToast(message, isError = false) {
             toastMessage.textContent = message;
-            toast.classList.remove('bg-green-500', 'bg-red-500');
-            toast.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
-            
+            toast.className = `fixed top-5 right-5 text-white py-2 px-5 rounded-lg shadow-lg transition-all duration-500 z-50 ${isError ? 'bg-red-500' : 'bg-green-500'}`;
             toast.classList.remove('opacity-0', '-translate-y-12');
             toast.classList.add('opacity-100', 'translate-y-0');
-            
             setTimeout(() => {
                 toast.classList.remove('opacity-100', 'translate-y-0');
                 toast.classList.add('opacity-0', '-translate-y-12');
