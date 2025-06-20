@@ -168,7 +168,7 @@
                         <span class="text-gradient">FLOWTUR 2025</span>
                     </h1>
                     <p class="text-lg sm:text-xl lg:text-2xl mt-6 mb-10 text-slate-300 max-w-3xl mx-auto">
-                        El torneo de fútbol 7 que estabas esperando. En Valladolid.
+                        El torneo de fútbol 7 que estabas esperando. Pasión, competición y fair play se unen en Valladolid.
                     </p>
                     <a href="#register" class="btn-primary text-white font-bold py-4 px-10 rounded-full text-lg uppercase shadow-lg inline-block">
                         ¡Inscríbete ahora!
@@ -183,7 +183,7 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Sobre el <span class="text-gradient">Torneo</span></h2>
                 <div class="max-w-4xl mx-auto glass-card p-6 sm:p-10 rounded-2xl shadow-lg fade-in" style="animation-delay: 0.2s;">
                     <p class="text-base sm:text-lg leading-relaxed text-slate-300 text-justify">
-                        ¡Bienvenidos a FLOWTUR FC! (Si, somos los de las fiestas también). Nuestro objetivo es crear una experiencia competitiva y divertida para todos los jugadores de Valladolid. La inscripción es individual, pero te damos la opción de mostrar tu preferencia por uno de nuestros equipos base. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
+                        ¡Bienvenidos a FLOWTUR! Más que un simple torneo, somos una comunidad de apasionados por el fútbol 7. Nuestro objetivo es crear una experiencia competitiva, divertida y memorable para todos los jugadores de Valladolid y alrededores. La inscripción es individual y nosotros nos encargaremos de formar los equipos. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
                     </p>
                 </div>
             </div>
@@ -217,31 +217,6 @@
                         <div><label for="player-phone" class="block text-sm font-medium text-slate-300 mb-2">Teléfono de Contacto</label><input type="tel" id="player-phone" name="player-phone" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
                         <div><label for="player-age" class="block text-sm font-medium text-slate-300 mb-2">Edad</label><input type="number" id="player-age" name="player-age" required min="16" class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
                         
-                        <!-- Team Preference Section -->
-                        <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-3">Preferencia de Equipo</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <div>
-                                    <input type="radio" name="team-preference" id="team1" value="Los Halcones" class="hidden peer" required>
-                                    <label for="team1" class="block text-center cursor-pointer rounded-lg border-2 border-slate-700 p-4 transition peer-checked:border-cyan-400 peer-checked:bg-slate-800 hover:bg-slate-800/50">
-                                        <span class="font-semibold text-white">Los Halcones</span>
-                                    </label>
-                                </div>
-                                <div>
-                                     <input type="radio" name="team-preference" id="team2" value="Tiburones FC" class="hidden peer">
-                                     <label for="team2" class="block text-center cursor-pointer rounded-lg border-2 border-slate-700 p-4 transition peer-checked:border-cyan-400 peer-checked:bg-slate-800 hover:bg-slate-800/50">
-                                        <span class="font-semibold text-white">Tiburones FC</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="team-preference" id="team3" value="Jaguares United" class="hidden peer">
-                                     <label for="team3" class="block text-center cursor-pointer rounded-lg border-2 border-slate-700 p-4 transition peer-checked:border-cyan-400 peer-checked:bg-slate-800 hover:bg-slate-800/50">
-                                        <span class="font-semibold text-white">Jaguares Utd</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div><button type="submit" id="submit-button" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-md flex items-center justify-center text-lg"><span id="submit-text">Enviar Inscripción</span><i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i></button></div>
                     </form>
                 </div>
@@ -256,11 +231,11 @@
                     <!-- FAQ Item 1 -->
                     <div class="faq-item glass-card rounded-lg fade-in" style="animation-delay: 0.2s;">
                         <div class="faq-question flex justify-between items-center p-6">
-                            <h3 class="font-semibold text-lg text-white">¿Tengo que unirme a uno de los equipos propuestos?</h3>
+                            <h3 class="font-semibold text-lg text-white">¿Necesito tener un equipo para inscribirme?</h3>
                             <i class="fas fa-chevron-down text-cyan-400"></i>
                         </div>
                         <div class="faq-answer text-slate-300">
-                            <p>No, la inscripción sigue siendo individual. La selección de equipo es solo una preferencia para ayudarnos a organizar. Haremos lo posible por respetarla, pero los equipos finales se formarán buscando el mayor equilibrio.</p>
+                            <p>No, la inscripción es individual. Nosotros nos encargamos de crear los equipos de la manera más equilibrada posible para asegurar la competitividad y la diversión.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
@@ -384,11 +359,6 @@
         // Handle form submission
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const selectedTeamInput = registrationForm.querySelector('input[name="team-preference"]:checked');
-            if (!selectedTeamInput) {
-                displayToast("Por favor, selecciona una preferencia de equipo.", true);
-                return;
-            }
 
             if (!supabase || !SUPABASE_URL || SUPABASE_URL.includes('YOUR_SUPABASE_URL')) {
                  displayToast("La base de datos no está configurada.", true);
@@ -403,8 +373,7 @@
                     player_name: registrationForm['player-name'].value, 
                     player_email: registrationForm['player-email'].value, 
                     player_phone: registrationForm['player-phone'].value, 
-                    player_age: registrationForm['player-age'].value,
-                    team_preference: selectedTeamInput.value
+                    player_age: registrationForm['player-age'].value
                 }]);
 
             if (error) {
