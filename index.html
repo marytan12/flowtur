@@ -386,7 +386,7 @@
 
             setLoading(true);
 
-            const { data, error } = await supabase
+            const { error } = await supabase
                 .from('players')
                 .insert([{ 
                     player_name: registrationForm['player-name'].value, 
@@ -394,14 +394,12 @@
                     player_phone: registrationForm['player-phone'].value, 
                     player_age: registrationForm['player-age'].value,
                     team_preference: selectedTeamInput.value
-                }])
-                .select();
+                }]);
 
             if (error) {
                 console.error('Error inserting data:', error);
                 displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
             } else {
-                console.log('Data inserted successfully:', data);
                 displayToast('¡Inscripción realizada con éxito!');
                 registrationForm.reset();
             }
