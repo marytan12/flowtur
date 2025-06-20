@@ -137,7 +137,6 @@
             <div class="hidden lg:flex items-center space-x-6">
                 <a href="#about" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Sobre Nosotros</a>
                 <a href="#rules" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Reglas</a>
-                <a href="#prizes" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">Premios</a>
                 <a href="#faq" class="text-slate-300 hover:text-cyan-400 transition-colors duration-300">FAQ</a>
                 <a href="#register" class="btn-primary text-white font-bold py-2 px-5 rounded-full">Inscribirse</a>
             </div>
@@ -154,7 +153,6 @@
         <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-lg transform -translate-y-4 opacity-0">
             <a href="#about" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Sobre Nosotros</a>
             <a href="#rules" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Reglas</a>
-            <a href="#prizes" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">Premios</a>
             <a href="#faq" class="mobile-menu-link block py-3 px-6 text-base text-slate-300 hover:bg-slate-800">FAQ</a>
             <a href="#register" class="mobile-menu-link block py-3 px-6 text-base text-cyan-400 font-bold hover:bg-slate-800">Inscribirse</a>
         </div>
@@ -185,7 +183,7 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Sobre el <span class="text-gradient">Torneo</span></h2>
                 <div class="max-w-4xl mx-auto glass-card p-6 sm:p-10 rounded-2xl shadow-lg fade-in" style="animation-delay: 0.2s;">
                     <p class="text-base sm:text-lg leading-relaxed text-slate-300 text-justify">
-                        ¡Bienvenidos a FLOWTUR! Más que un simple torneo, somos una comunidad de apasionados por el fútbol 7. Nuestro objetivo es crear una experiencia competitiva, divertida y memorable para todos los jugadores de Valladolid y alrededores. La inscripción es individual, lo que garantiza equipos equilibrados y la oportunidad de conocer a otros futbolistas. Nosotros nos encargamos de toda la organización para que tú solo te preocupes de disfrutar y darlo todo en el campo. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
+                        ¡Bienvenidos a FLOWTUR! Más que un simple torneo, somos una comunidad de apasionados por el fútbol 7. Nuestro objetivo es crear una experiencia competitiva, divertida y memorable para todos los jugadores de Valladolid y alrededores. La inscripción es individual, pero te damos la opción de mostrar tu preferencia por uno de nuestros equipos base. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
                     </p>
                 </div>
             </div>
@@ -207,30 +205,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Prizes Section -->
-        <section id="prizes" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Premios para los <span class="text-gradient">Campeones</span></h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass-card p-8 rounded-xl text-center fade-in border-2 border-yellow-400" style="animation-delay: 0.2s;">
-                        <i class="fas fa-trophy text-6xl text-yellow-400 mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2 text-white">1er Puesto</h3>
-                        <p class="text-slate-300">Trofeo de campeón + Medallas de oro + Premios de patrocinadores.</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-xl text-center fade-in border-2 border-slate-400" style="animation-delay: 0.3s;">
-                        <i class="fas fa-award text-6xl text-slate-400 mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2 text-white">2º Puesto</h3>
-                        <p class="text-slate-300">Medallas de plata + Descuentos en futuras ediciones.</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-xl text-center fade-in border-2 border-orange-400" style="animation-delay: 0.4s;">
-                        <i class="fas fa-medal text-6xl text-orange-400 mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2 text-white">3er Puesto</h3>
-                        <p class="text-slate-300">Medallas de bronce + Material deportivo.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
         
         <!-- Registration Section -->
         <section id="register" class="py-16 sm:py-24 bg-slate-900/50">
@@ -238,11 +212,36 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 fade-in">Inscripción de <span class="text-gradient">Jugador</span></h2>
                 <div class="max-w-2xl mx-auto glass-card p-6 sm:p-8 rounded-2xl shadow-lg fade-in" style="animation-delay: 0.2s;">
                     <form id="registration-form" class="space-y-6">
-                         <!-- Form fields remain the same -->
                         <div><label for="player-name" class="block text-sm font-medium text-slate-300 mb-2">Nombre Completo</label><input type="text" id="player-name" name="player-name" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
                         <div><label for="player-email" class="block text-sm font-medium text-slate-300 mb-2">Email de Contacto</label><input type="email" id="player-email" name="player-email" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
                         <div><label for="player-phone" class="block text-sm font-medium text-slate-300 mb-2">Teléfono de Contacto</label><input type="tel" id="player-phone" name="player-phone" required class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
                         <div><label for="player-age" class="block text-sm font-medium text-slate-300 mb-2">Edad</label><input type="number" id="player-age" name="player-age" required min="16" class="form-input w-full bg-slate-800 border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none transition-all duration-300"></div>
+                        
+                        <!-- Team Preference Section -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-3">Preferencia de Equipo</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <input type="radio" name="team-preference" id="team1" value="Los Halcones" class="hidden peer" required>
+                                    <label for="team1" class="block text-center cursor-pointer rounded-lg border-2 border-slate-700 p-4 transition peer-checked:border-cyan-400 peer-checked:bg-slate-800 hover:bg-slate-800/50">
+                                        <span class="font-semibold text-white">Los Halcones</span>
+                                    </label>
+                                </div>
+                                <div>
+                                     <input type="radio" name="team-preference" id="team2" value="Tiburones FC" class="hidden peer">
+                                     <label for="team2" class="block text-center cursor-pointer rounded-lg border-2 border-slate-700 p-4 transition peer-checked:border-cyan-400 peer-checked:bg-slate-800 hover:bg-slate-800/50">
+                                        <span class="font-semibold text-white">Tiburones FC</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="team-preference" id="team3" value="Jaguares United" class="hidden peer">
+                                     <label for="team3" class="block text-center cursor-pointer rounded-lg border-2 border-slate-700 p-4 transition peer-checked:border-cyan-400 peer-checked:bg-slate-800 hover:bg-slate-800/50">
+                                        <span class="font-semibold text-white">Jaguares Utd</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div><button type="submit" id="submit-button" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-md flex items-center justify-center text-lg"><span id="submit-text">Enviar Inscripción</span><i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i></button></div>
                     </form>
                 </div>
@@ -257,11 +256,11 @@
                     <!-- FAQ Item 1 -->
                     <div class="faq-item glass-card rounded-lg fade-in" style="animation-delay: 0.2s;">
                         <div class="faq-question flex justify-between items-center p-6">
-                            <h3 class="font-semibold text-lg text-white">¿Necesito tener un equipo para inscribirme?</h3>
+                            <h3 class="font-semibold text-lg text-white">¿Tengo que unirme a uno de los equipos propuestos?</h3>
                             <i class="fas fa-chevron-down text-cyan-400"></i>
                         </div>
                         <div class="faq-answer text-slate-300">
-                            <p>No, la inscripción es individual. Nosotros nos encargamos de crear los equipos de la manera más equilibrada posible para asegurar la competitividad y la diversión.</p>
+                            <p>No, la inscripción sigue siendo individual. La selección de equipo es solo una preferencia para ayudarnos a organizar. Haremos lo posible por respetarla, pero los equipos finales se formarán buscando el mayor equilibrio.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
@@ -374,12 +373,30 @@
         // Handle form submission
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const selectedTeamInput = registrationForm.querySelector('input[name="team-preference"]:checked');
+            if (!selectedTeamInput) {
+                displayToast("Por favor, selecciona una preferencia de equipo.", true);
+                return;
+            }
+
             if (!supabase || !SUPABASE_URL || SUPABASE_URL.includes('YOUR_SUPABASE_URL')) {
                  displayToast("La base de datos no está configurada.", true);
                  return;
             }
+
             setLoading(true);
-            const { data, error } = await supabase.from('players').insert([{ player_name: registrationForm['player-name'].value, player_email: registrationForm['player-email'].value, player_phone: registrationForm['player-phone'].value, player_age: registrationForm['player-age'].value,}]).select();
+
+            const { data, error } = await supabase
+                .from('players')
+                .insert([{ 
+                    player_name: registrationForm['player-name'].value, 
+                    player_email: registrationForm['player-email'].value, 
+                    player_phone: registrationForm['player-phone'].value, 
+                    player_age: registrationForm['player-age'].value,
+                    team_preference: selectedTeamInput.value
+                }])
+                .select();
+
             if (error) {
                 console.error('Error inserting data:', error);
                 displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
