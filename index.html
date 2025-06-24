@@ -11,52 +11,25 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         /* ========================================
-        DISEÑO CON FUENTES LOCALES (SF PRO DISPLAY)
+        NUEVO DISEÑO MODERNO Y MINIMALISTA
         ========================================
         */
-        
-        /* --- Definición de las fuentes locales ---
-           Asegúrate de que los nombres de archivo coincidan con los de tu servidor. 
-        */
-        @font-face {
-            font-family: 'SF Pro Display';
-            src: url('SFPRODISPLAYREGULAR.OTF') format('opentype');
-            font-weight: 400; /* Regular */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'SF Pro Display';
-            src: url('SFPRODISPLAYMEDIUM.OTF') format('opentype');
-            font-weight: 500; /* Medium */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'SF Pro Display';
-            src: url('SFPRODISPLAYBOLD.OTF') format('opentype');
-            font-weight: 700; /* Bold */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'SF Pro Display';
-            /* ¡IMPORTANTE! Para que el título se vea más grueso, 
-               asegúrate de tener el archivo 'SFPRODISPLAYBLACK.OTF' o uno similar ('Heavy')
-               en la raíz de tu proyecto. */
-            src: url('SFPRODISPLAYBLACK.OTF') format('opentype');
-            font-weight: 900; /* Black */
-            font-style: normal;
-        }
 
         html {
             scroll-behavior: smooth;
         }
         body {
-            /* Se aplica la nueva fuente local */
-            font-family: 'SF Pro Display', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #0A0A0A;
             color: #E0E0E0;
             overflow-x: hidden;
@@ -92,16 +65,10 @@
             text-fill-color: transparent;
         }
         
-        h1 {
-           font-weight: 900;
-        }
         h2 {
            font-weight: 700;
            font-size: 2.5rem; /* Equivalente a text-4xl */
            line-height: 1.2;
-        }
-        h3 {
-            font-weight: 700;
         }
 
         /* --- Botones Modernos --- */
@@ -249,7 +216,7 @@
         <!-- Hero Section -->
         <section class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
             <div class="max-w-4xl mx-auto scroll-animate">
-                <h1 class="text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter">
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter">
                     <span class="text-gradient">FLOWTUR</span>
                 </h1>
                 <p class="text-lg sm:text-xl mt-6 mb-10 text-slate-400 max-w-2xl mx-auto">
