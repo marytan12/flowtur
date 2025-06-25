@@ -188,6 +188,7 @@
             <div class="hidden lg:flex items-center space-x-2">
                 <a href="#about" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Sobre Nosotros</a>
                 <a href="#rules" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
+                <a href="#location" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Ubicación</a>
                 <a href="#faq" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">FAQ</a>
                 <a href="#register" class="btn btn-primary ml-4">Inscribirse</a>
             </div>
@@ -205,6 +206,7 @@
             <div class="flex flex-col items-center p-4 space-y-2">
                 <a href="#about" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Sobre Nosotros</a>
                 <a href="#rules" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Reglas</a>
+                <a href="#location" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Ubicación</a>
                 <a href="#faq" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">FAQ</a>
                 <a href="#register" class="mobile-menu-link block py-3 px-6 text-lg text-white font-bold w-full text-center mt-4 btn btn-primary">Inscribirse</a>
             </div>
@@ -216,7 +218,6 @@
         <!-- Hero Section -->
         <section class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
             <div class="max-w-4xl mx-auto scroll-animate">
-                <!-- CAMBIO AQUÍ: Se eliminó la clase tracking-tighter -->
                 <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase">
                     <span class="text-gradient">FLOWTUR</span>
                 </h1>
@@ -286,8 +287,30 @@
             </div>
         </section>
 
+        <!-- Location Section -->
+        <section id="location" class="py-20 sm:py-32 bg-black/20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center scroll-animate">
+                    <h2 class="text-center mb-12">Nuestra <span class="text-gradient">Ubicación</span></h2>
+                    <p class="text-lg text-slate-400 mb-10">
+                        Los partidos se jugarán en los campos del Parquesol.
+                    </p>
+                    <div class="modern-card p-0 overflow-hidden scroll-animate" style="transition-delay: 200ms;">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.836377757758!2d-4.706199323396482!3d41.65997287126133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4768a8537c3555%3A0x943e628464a93541!2sC.%20de%20Mart%C3%ADn%20Santos%20Romero%2C%202%2C%2047016%20Valladolid%2C%20Spain!5e0!3m2!1ses!2ses" 
+                            class="w-full h-96 md:h-[500px]"
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ Section -->
-        <section id="faq" class="py-20 sm:py-32 bg-black/20">
+        <section id="faq" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Frecuentes</span></h2>
                 <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
@@ -329,133 +352,4 @@
                 <a href="https://www.youtube.com/@FLOWTUR" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-red-500 transition-colors duration-300 text-3xl"><i class="fab fa-youtube"></i></a>
              </div>
              <p class="text-sm">Desarrollada por Mario Rodríguez en Valladolid.</p>
-             <p class="text-xs mt-2 text-slate-500">&copy; 2025 FLOWTUR. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-    
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed top-5 right-5 text-white py-2 px-5 rounded-lg shadow-lg opacity-0 transform -translate-y-12 transition-all duration-500 z-50">
-        <p id="toast-message">Mensaje de notificación</p>
-    </div>
-    
-    <!-- App Logic -->
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-        // --- Supabase Configuration ---
-        const SUPABASE_URL = 'https://nxthxjarwushdcpwxgmo.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dGh4amFyd3VzaGRjcHd4Z21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzM2NTMsImV4cCI6MjA2NTgwOTY1M30.pI4VcJRNGTDpzZsUHub33WqFL8DidAC1Vl3-4zzySkY';
-        let supabase;
-        try {
-            supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } catch (e) {
-            console.error("Error initializing Supabase", e);
-        }
-        
-        // --- UI Elements ---
-        const registrationForm = document.getElementById('registration-form');
-        const submitButton = document.getElementById('submit-button');
-        const submitText = document.getElementById('submit-text');
-        const submitSpinner = document.getElementById('submit-spinner');
-        const toast = document.getElementById('toast');
-        const toastMessage = document.getElementById('toast-message');
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-        const faqAccordion = document.getElementById('faq-accordion');
-
-        // --- Event Listeners ---
-        // Toggle mobile menu
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // FAQ Accordion Logic
-        if (faqAccordion) {
-            faqAccordion.addEventListener('click', (e) => {
-                const question = e.target.closest('.faq-question');
-                if (question) {
-                    question.parentElement.classList.toggle('open');
-                }
-            });
-        }
-
-        // Handle form submission
-        if(registrationForm) {
-            registrationForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (!supabase) {
-                     displayToast("Error de conexión con la base de datos.", true);
-                     return;
-                }
-                setLoading(true);
-                const { error } = await supabase
-                    .from('players')
-                    .insert([{ 
-                        player_name: registrationForm['player-name'].value, 
-                        player_email: registrationForm['player-email'].value, 
-                        player_phone: registrationForm['player-phone'].value, 
-                        player_age: registrationForm['player-age'].value
-                    }]);
-                if (error) {
-                    console.error('Error inserting data:', error);
-                    displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
-                } else {
-                    displayToast('¡Inscripción realizada con éxito!');
-                    registrationForm.reset();
-                }
-                setLoading(false);
-            });
-        }
-
-        // --- Animations on Scroll ---
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            scrollObserver.observe(el);
-        });
-
-        // --- Functions ---
-        function setLoading(isLoading) {
-            if(!submitButton) return;
-            submitButton.disabled = isLoading;
-            if(submitText) submitText.classList.toggle('hidden', isLoading);
-            if(submitSpinner) submitSpinner.classList.toggle('hidden', !isLoading);
-            submitButton.classList.toggle('cursor-not-allowed', isLoading);
-        }
-
-        function displayToast(message, isError = false) {
-            if(!toast || !toastMessage) return;
-            toastMessage.textContent = message;
-            toast.className = `fixed top-5 right-5 text-white py-3 px-6 rounded-lg shadow-2xl transition-all duration-500 z-50 text-base ${isError ? 'bg-red-600' : 'bg-green-500'}`;
-            toast.classList.remove('opacity-0', '-translate-y-12');
-            toast.classList.add('opacity-100', 'translate-y-0');
-            setTimeout(() => {
-                toast.classList.remove('opacity-100', 'translate-y-0');
-                toast.classList.add('opacity-0', '-translate-y-12');
-            }, 3500);
-        }
-        
-        // Initial animation for hero
-        window.addEventListener('load', () => {
-            const hero = document.querySelector('.min-h-screen .scroll-animate');
-            if(hero) {
-                setTimeout(() => hero.classList.add('visible'), 100);
-            }
-        });
-    </script>
-</body>
-</html>
+             <p class="text-xs mt-2 text-slate-500">&copy
