@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowtur</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="flowturicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ========================================
+        NUEVO DISEÑO MODERNO Y MINIMALISTA
+        ========================================
+        */
+
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0A0A0A;
+            color: #E0E0E0;
+            overflow-x: hidden;
+        }
+
+        /* --- Fondo de Malla de Gradiente Sutil --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.2) 0%, transparent 25%);
+            z-index: -1;
+            animation: fadeInBackground 3s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- Estilos de Tipografía --- */
+        .text-gradient {
+            background-image: linear-gradient(45deg, #22d3ee, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        h2 {
+           font-weight: 700;
+           font-size: 2.5rem; /* Equivalente a text-4xl */
+           line-height: 1.2;
+        }
+
+        /* --- Botones Modernos --- */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background-image: linear-gradient(to right, #ec4899 0%, #ef4444 51%, #ec4899 100%);
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 4px 15px 0 rgba(236, 72, 153, 0.4);
+        }
+        .btn-primary:hover {
+            background-position: right center;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px 0 rgba(236, 72, 153, 0.5);
+        }
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #E0E0E0;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #22d3ee;
+        }
+
+        /* --- Tarjetas Minimalistas --- */
+        .modern-card {
+            background: rgba(16, 16, 16, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem; /* rounded-2xl */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 1.5rem; /* p-6 */
+        }
+        .modern-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+             border-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* --- Estilos para el Header --- */
+        header {
+            background-color: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- Formulario --- */
+        .form-input {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #22d3ee;
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+        }
+        
+        /* --- Acordeón FAQ --- */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease;
+            padding: 0 1.5rem;
+        }
+        .faq-item.open .faq-answer {
+             max-height: 200px;
+             padding: 0 1.5rem 1.5rem;
+        }
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+        .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+        
+        /* --- Animaciones al hacer scroll --- */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full z-20 top-0 left-0">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="flowturicon.png" 
+                     alt="Icono FLOWTUR" 
+                     class="h-10 w-10 sm:h-12 sm:w-12" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/48x48/0A0A0A/22d3ee?text=FT';">
+                <span class="text-2xl font-bold text-white">FLOWTUR</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-2">
+                <a href="#about" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Sobre Nosotros</a>
+                <a href="#rules" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
+                <a href="#location" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Ubicación</a>
+                <a href="#faq" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">FAQ</a>
+                <a href="#register" class="btn btn-primary ml-4">Inscribirse</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none p-2" aria-label="Abrir menú">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-lg">
+            <div class="flex flex-col items-center p-4 space-y-2">
+                <a href="#about" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Sobre Nosotros</a>
+                <a href="#rules" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Reglas</a>
+                <a href="#location" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Ubicación</a>
+                <a href="#faq" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">FAQ</a>
+                <a href="#register" class="mobile-menu-link block py-3 px-6 text-lg text-white font-bold w-full text-center mt-4 btn btn-primary">Inscribirse</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
+            <div class="max-w-4xl mx-auto scroll-animate">
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase">
+                    <span class="text-gradient">FLOWTUR</span>
+                </h1>
+                <p class="text-lg sm:text-xl mt-6 mb-10 text-slate-400 max-w-2xl mx-auto">
+                    La fusión perfecta de fútbol 7 y fiesta. Compite, diviértete y vive una experiencia única en Valladolid.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#register" class="btn btn-primary text-lg">
+                        ¡Inscríbete ahora! <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                    <a href="#about" class="btn btn-secondary text-lg">
+                        Saber más
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center scroll-animate">
+                    <h2 class="text-center mb-4">Sobre el <span class="text-gradient">Torneo</span></h2>
+                    <p class="text-lg text-slate-400 mb-10">
+                        ¡Bienvenidos a FLOWTUR FC! (Sí, somos los de las fiestas).
+                    </p>
+                    <div class="modern-card text-left">
+                        <p class="text-base sm:text-lg leading-relaxed text-slate-300">
+                           Nuestro objetivo es crear una experiencia competitiva y divertida. La inscripción es individual y nosotros nos encargaremos de formar los equipos buscando el mayor equilibrio. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="rules" class="py-20 sm:py-32 bg-black/20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-center mb-12 scroll-animate">Reglamento del <span class="text-gradient">Torneo</span></h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 100ms"><i class="fas fa-users text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por la organización para máximo equilibrio.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 200ms"><i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Partidos de 2 partes de 20 min, con 5 min de descanso.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 300ms"><i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es clave. La conducta antideportiva será sancionada.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 400ms"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y volantes para mantener el ritmo del partido.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 500ms"><i class="fas fa-shirt text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Calzado adecuado obligatorio. La organización proporcionará petos.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 600ms"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡A por la gloria!</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Registration Section -->
+        <section id="register" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-2xl mx-auto text-center scroll-animate">
+                    <h2 class="mb-4">Inscríbete <span class="text-gradient">Ahora</span></h2>
+                    <p class="text-lg text-slate-400 mb-10">Las plazas son limitadas. Asegura tu sitio y prepárate para la acción.</p>
+                </div>
+                <div class="max-w-2xl mx-auto modern-card scroll-animate" style="transition-delay: 200ms;">
+                    <form id="registration-form" class="space-y-6">
+                        <div><label for="player-name" class="block text-sm font-medium text-slate-400 mb-2">Nombre Completo</label><input type="text" id="player-name" name="player-name" required class="form-input w-full"></div>
+                        <div><label for="player-email" class="block text-sm font-medium text-slate-400 mb-2">Email de Contacto</label><input type="email" id="player-email" name="player-email" required class="form-input w-full"></div>
+                        <div><label for="player-phone" class="block text-sm font-medium text-slate-400 mb-2">Teléfono de Contacto</label><input type="tel" id="player-phone" name="player-phone" required class="form-input w-full"></div>
+                        <div><label for="player-age" class="block text-sm font-medium text-slate-400 mb-2">Edad</label><input type="number" id="player-age" name="player-age" required min="16" class="form-input w-full"></div>
+                        
+                        <div><button type="submit" id="submit-button" class="w-full btn btn-primary text-lg mt-4"><span id="submit-text">Enviar Inscripción</span><i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i></button></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="py-20 sm:py-32 bg-black/20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center scroll-animate">
+                    <h2 class="text-center mb-12">Nuestra <span class="text-gradient">Ubicación</span></h2>
+                    <p class="text-lg text-slate-400 mb-10">
+                        Los partidos se jugarán en los campos de fútbol San Pío X.
+                    </p>
+                    <div class="modern-card p-0 overflow-hidden scroll-animate" style="transition-delay: 200ms;">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.836377757758!2d-4.706199323396482!3d41.65997287126133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4768a8537c3555%3A0x943e628464a93541!2sC.%20de%20Mart%C3%ADn%20Santos%20Romero%2C%202%2C%2047016%20Valladolid%2C%20Spain!5e0!3m2!1ses!2ses" 
+                            class="w-full h-96 md:h-[500px]"
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Frecuentes</span></h2>
+                <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 100ms;">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-0">
+                            <h3 class="font-semibold text-lg text-white">¿Necesito tener un equipo para inscribirme?</h3>
+                            <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
+                        </div>
+                        <div class="faq-answer text-slate-400"><p class="pt-4">No, la inscripción es individual. Nosotros nos encargamos de crear los equipos de la manera más equilibrada posible para asegurar la competitividad y la diversión.</p></div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 200ms;">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-0">
+                            <h3 class="font-semibold text-lg text-white">¿Cuál es el coste de la inscripción?</h3>
+                            <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
+                        </div>
+                        <div class="faq-answer text-slate-400"><p class="pt-4">El precio de la inscripción se anunciará junto con las fechas oficiales del torneo. El pago incluirá la participación, agua durante los partidos y el seguro correspondiente.</p></div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 300ms;">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-0">
+                            <h3 class="font-semibold text-lg text-white">¿Qué debo llevar a los partidos?</h3>
+                            <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
+                        </div>
+                        <div class="faq-answer text-slate-400"><p class="pt-4">Debes traer tu propia ropa deportiva, espinilleras (recomendado) y botas de fútbol para césped artificial. Nosotros proporcionaremos los petos para diferenciar a los equipos y los balones.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-12 mt-20 border-t border-white/10">
+        <div class="container mx-auto px-4 sm:px-6 text-center text-slate-400">
+             <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://www.instagram.com/_flowtur_" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-pink-500 transition-colors duration-300 text-3xl"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitch.tv/flowtur" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-purple-500 transition-colors duration-300 text-3xl"><i class="fab fa-twitch"></i></a>
+                <a href="https://www.youtube.com/@FLOWTUR" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-red-500 transition-colors duration-300 text-3xl"><i class="fab fa-youtube"></i></a>
+             </div>
+             <p class="text-sm">Desarrollada por Mario Rodríguez en Valladolid.</p>
+             <p class="text-xs mt-2 text-slate-500">&copy; 2025 FLOWTUR. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-5 right-5 text-white py-2 px-5 rounded-lg shadow-lg opacity-0 transform -translate-y-12 transition-all duration-500 z-50">
+        <p id="toast-message">Mensaje de notificación</p>
+    </div>
+    
+    <!-- App Logic -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        // --- Supabase Configuration ---
+        const SUPABASE_URL = 'https://nxthxjarwushdcpwxgmo.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dGh4amFyd3VzaGRjcHd4Z21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzM2NTMsImV4cCI6MjA2NTgwOTY1M30.pI4VcJRNGTDpzZsUHub33WqFL8DidAC1Vl3-4zzySkY';
+        let supabase;
+        try {
+            supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch (e) {
+            console.error("Error initializing Supabase", e);
+        }
+        
+        // --- UI Elements ---
+        const registrationForm = document.getElementById('registration-form');
+        const submitButton = document.getElementById('submit-button');
+        const submitText = document.getElementById('submit-text');
+        const submitSpinner = document.getElementById('submit-spinner');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        const faqAccordion = document.getElementById('faq-accordion');
+
+        // --- Event Listeners ---
+        // Toggle mobile menu
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // FAQ Accordion Logic
+        if (faqAccordion) {
+            faqAccordion.addEventListener('click', (e) => {
+                const question = e.target.closest('.faq-question');
+                if (question) {
+                    question.parentElement.classList.toggle('open');
+                }
+            });
+        }
+
+        // Handle form submission
+        if(registrationForm) {
+            registrationForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!supabase) {
+                     displayToast("Error de conexión con la base de datos.", true);
+                     return;
+                }
+                setLoading(true);
+                const { error } = await supabase
+                    .from('players')
+                    .insert([{ 
+                        player_name: registrationForm['player-name'].value, 
+                        player_email: registrationForm['player-email'].value, 
+                        player_phone: registrationForm['player-phone'].value, 
+                        player_age: registrationForm['player-age'].value
+                    }]);
+                if (error) {
+                    console.error('Error inserting data:', error);
+                    displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
+                } else {
+                    displayToast('¡Inscripción realizada con éxito!');
+                    registrationForm.reset();
+                }
+                setLoading(false);
+            });
+        }
+
+        // --- Animations on Scroll ---
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            scrollObserver.observe(el);
+        });
+
+        // --- Functions ---
+        function setLoading(isLoading) {
+            if(!submitButton) return;
+            submitButton.disabled = isLoading;
+            if(submitText) submitText.classList.toggle('hidden', isLoading);
+            if(submitSpinner) submitSpinner.classList.toggle('hidden', !isLoading);
+            submitButton.classList.toggle('cursor-not-allowed', isLoading);
+        }
+
+        function displayToast(message, isError = false) {
+            if(!toast || !toastMessage) return;
+            toastMessage.textContent = message;
+            toast.className = `fixed top-5 right-5 text-white py-3 px-6 rounded-lg shadow-2xl transition-all duration-500 z-50 text-base ${isError ? 'bg-red-600' : 'bg-green-500'}`;
+            toast.classList.remove('opacity-0', '-translate-y-12');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-12');
+            }, 3500);
+        }
+        
+        // Initial animation for hero
+        window.addEventListener('load', () => {
+            const hero = document.querySelector('.min-h-screen .scroll-animate');
+            if(hero) {
+                setTimeout(() => hero.classList.add('visible'), 100);
+            }
+        });
+    </script>
+</body>
+</html>
+
