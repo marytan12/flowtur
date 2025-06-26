@@ -273,52 +273,52 @@
 
             if (totalItems === 0) return;
 
-            // --- Video playback logic with Intersection Observer ---
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const target = entry.target;
-                    if (target.tagName !== 'VIDEO') return;
-
-                    if (entry.isIntersecting) {
-                        target.play().catch(e => console.error("Video autoplay was prevented:", e));
-                    } else {
-                        target.pause();
-                    }
-                });
-            }, {
-                root: carousel, // Check visibility within the carousel container
-                threshold: 0.8  // Trigger when 80% of the video is visible
-            });
-
-            items.forEach(item => {
-                if(item.tagName === 'VIDEO') {
-                    videoObserver.observe(item);
-                }
-            });
-
-            // --- Button controls logic ---
-            function updateCarousel() {
-                inner.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-            
-            // Function to pause all videos in this carousel
-            function pauseAllVideos() {
-                 items.forEach(item => {
+            function handleMedia(index) {
+                items.forEach((item, i) => {
                     if (item.tagName === 'VIDEO') {
-                        item.pause();
+                        if (i === index) {
+                            item.play().catch(e => console.error("Video play failed:", e));
+                        } else {
+                            item.pause();
+                            item.currentTime = 0;
+                        }
                     }
                 });
+            }
+
+            function updateCarousel(newIndex) {
+                currentIndex = newIndex;
+                inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+                handleMedia(currentIndex);
             }
 
             prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-                updateCarousel();
+                const newIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel(newIndex);
             });
 
             nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalItems;
-                updateCarousel();
+                const newIndex = (currentIndex + 1) % totalItems;
+                updateCarousel(newIndex);
             });
+            
+            const carouselObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        handleMedia(currentIndex);
+                    } else {
+                        items.forEach(item => {
+                           if (item.tagName === 'VIDEO') {
+                               item.pause();
+                           }
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if(carousel.parentElement.parentElement){
+                 carouselObserver.observe(carousel.parentElement.parentElement);
+            }
         }
 
         // Initialize all carousels on the page when the document is ready.
