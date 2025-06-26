@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowtur - Fiestas Pasadas</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="flowturicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ========================================
+        DISEÑO MODERNO Y MINIMALISTA
+        ======================================== */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0A0A0A;
+            color: #E0E0E0;
+            overflow-x: hidden;
+        }
+
+        /* --- Fondo de Malla de Gradiente Sutil --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.2) 0%, transparent 25%);
+            z-index: -1;
+            animation: fadeInBackground 3s ease-in-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInBackground { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- Estilos de Tipografía --- */
+        .text-gradient {
+            background-image: linear-gradient(45deg, #22d3ee, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent;
+        }
+        h2 { font-weight: 700; font-size: 2.5rem; line-height: 1.2; }
+        h3 { font-weight: 600; font-size: 1.5rem; line-height: 1.3; }
+
+        /* --- Botones --- */
+        .btn {
+            padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600;
+            text-align: center; transition: all 0.3s ease; display: inline-block;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background-image: linear-gradient(to right, #ec4899 0%, #ef4444 51%, #ec4899 100%);
+            background-size: 200% auto; color: white;
+            box-shadow: 0 4px 15px 0 rgba(236, 72, 153, 0.4);
+        }
+        .btn-primary:hover {
+            background-position: right center; transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px 0 rgba(236, 72, 153, 0.5);
+        }
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);
+            color: #E0E0E0;
+        }
+        .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1); border-color: #22d3ee; }
+
+        /* --- Tarjetas --- */
+        .modern-card {
+            background: rgba(16, 16, 16, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            padding: 1.5rem;
+        }
+        .modern-card:hover {
+             transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+             border-color: rgba(34, 211, 238, 0.5);
+        }
+        
+        /* --- Header --- */
+        header {
+            background-color: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- Animaciones al scroll --- */
+        .scroll-animate {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Estilos del Carrusel --- */
+        .carousel-control-btn {
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .carousel-control-btn:hover {
+            background-color: rgba(0, 0, 0, 0.75) !important;
+            transform: scale(1.1) translateY(-50%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full z-30 top-0 left-0">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="flowturicon.png" 
+                     alt="Icono FLOWTUR" 
+                     class="h-10 w-10 sm:h-12 sm:w-12" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/48x48/0A0A0A/22d3ee?text=FT';">
+                <span class="text-2xl font-bold text-white">FLOWTUR</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-1">
+                <a href="index.html#history" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Historia</a>
+                <a href="fiestas.html" class="px-3 py-2 text-white font-semibold transition-colors duration-300 rounded-md">Fiestas</a>
+                <a href="index.html#tournament" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">El Torneo</a>
+                <a href="index.html#rules" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
+                <a href="index.html#register" class="btn btn-primary ml-4">Inscribirse al Torneo</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none p-2" aria-label="Abrir menú">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-lg z-20">
+            <div class="flex flex-col items-center p-4 space-y-2">
+                <a href="index.html#history" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Historia</a>
+                <a href="fiestas.html" class="mobile-menu-link block py-2 px-4 text-lg text-white font-semibold w-full text-center">Fiestas</a>
+                <a href="index.html#tournament" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">El Torneo</a>
+                <a href="index.html#rules" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Reglas</a>
+                <a href="index.html#register" class="mobile-menu-link block py-3 px-6 text-lg text-white font-bold w-full text-center mt-4 btn btn-primary">Inscribirse al Torneo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-24">
+        <section id="past-parties" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-center mb-12 scroll-animate">Nuestras <span class="text-gradient">Fiestas Pasadas</span></h2>
+                
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Fiesta 1: Black Pearl -->
+                    <div class="modern-card scroll-animate p-4 md:p-6" style="transition-delay: 100ms;">
+                        <h3 class="font-bold mb-2 text-white text-center">Flowtur en <span class="text-gradient">Black Pearl</span></h3>
+                        <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>19 de Abril de 2025</p>
+                        <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Black Pearl, Valladolid</p>
+
+                        <!-- Carousel Black Pearl -->
+                        <div class="max-w-xs mx-auto">
+                            <div id="carousel-black-pearl" class="relative overflow-hidden rounded-lg bg-black/20 mt-4 shadow-lg">
+                                <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
+                                    <img src="https://placehold.co/360x640/000000/FFFFFF?text=B1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 1 de la fiesta en Black Pearl">
+                                    <img src="https://placehold.co/360x640/111111/FFFFFF?text=B2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 2 de la fiesta en Black Pearl">
+                                    <img src="https://placehold.co/360x640/000000/FFFFFF?text=B3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 3 de la fiesta en Black Pearl">
+                                    <img src="https://placehold.co/360x640/111111/FFFFFF?text=B4.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 4 de la fiesta en Black Pearl">
+                                    <img src="https://placehold.co/360x640/000000/FFFFFF?text=B5.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 5 de la fiesta en Black Pearl">
+                                </div>
+                                <button class="carousel-prev carousel-control-btn absolute top-1/2 left-3 transform -translate-y-1/2 bg-black/40 text-white w-10 h-10 rounded-full z-10 flex items-center justify-center">&#10094;</button>
+                                <button class="carousel-next carousel-control-btn absolute top-1/2 right-3 transform -translate-y-1/2 bg-black/40 text-white w-10 h-10 rounded-full z-10 flex items-center justify-center">&#10095;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fiesta 2: Cocoon Club -->
+                    <div class="modern-card scroll-animate p-4 md:p-6" style="transition-delay: 200ms;">
+                        <h3 class="font-bold mb-2 text-white text-center">Flowtur en <span class="text-gradient">Cocoon Club</span></h3>
+                        <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>05 de Junio de 2025</p>
+                        <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Cocoon Club, Valladolid</p>
+
+                        <!-- Carousel Cocoon Club -->
+                        <div class="max-w-xs mx-auto">
+                            <div id="carousel-cocoon" class="relative overflow-hidden rounded-lg bg-black/20 mt-4 shadow-lg">
+                                <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
+                                    <img src="https://placehold.co/360x640/000000/FFFFFF?text=C1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 1 de la fiesta en Cocoon Club">
+                                    <img src="https://placehold.co/360x640/111111/FFFFFF?text=C2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 2 de la fiesta en Cocoon Club">
+                                    <img src="https://placehold.co/360x640/000000/FFFFFF?text=C3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 3 de la fiesta en Cocoon Club">
+                                    <img src="https://placehold.co/360x640/111111/FFFFFF?text=C4.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 4 de la fiesta en Cocoon Club">
+                                    <img src="https://placehold.co/360x640/000000/FFFFFF?text=C5.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=Error';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 5 de la fiesta en Cocoon Club">
+                                </div>
+                                <button class="carousel-prev carousel-control-btn absolute top-1/2 left-3 transform -translate-y-1/2 bg-black/40 text-white w-10 h-10 rounded-full z-10 flex items-center justify-center">&#10094;</button>
+                                <button class="carousel-next carousel-control-btn absolute top-1/2 right-3 transform -translate-y-1/2 bg-black/40 text-white w-10 h-10 rounded-full z-10 flex items-center justify-center">&#10095;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="text-center mt-16 scroll-animate" style="transition-delay: 500ms;">
+                    <a href="index.html" class="btn btn-secondary text-lg">
+                        <i class="fas fa-arrow-left mr-2 text-sm"></i> Volver a la página principal
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-12 mt-20 border-t border-white/10">
+        <div class="container mx-auto px-4 sm:px-6 text-center text-slate-400">
+             <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://www.instagram.com/_flowtur_" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-pink-500 transition-colors duration-300 text-3xl"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitch.tv/flowtur" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-purple-500 transition-colors duration-300 text-3xl"><i class="fab fa-twitch"></i></a>
+                <a href="https://www.youtube.com/@FLOWTUR" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-red-500 transition-colors duration-300 text-3xl"><i class="fab fa-youtube"></i></a>
+             </div>
+             <p class="text-sm">Desarrollada por Mario Rodríguez en Valladolid.</p>
+             <p class="text-xs mt-2 text-slate-500">&copy; 2025 FLOWTUR. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- App Logic -->
+    <script>
+        // --- Mobile Menu Logic ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // --- Animation on Scroll Logic ---
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            scrollObserver.observe(el);
+        });
+
+        // --- Carousel Logic ---
+        function initCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+
+            const inner = carousel.querySelector('.carousel-inner');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+            const totalItems = items.length;
+
+            if (totalItems === 0) return;
+
+            function updateCarousel() {
+                inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            });
+        }
+
+        // Initialize all carousels on the page when the document is ready.
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel('carousel-black-pearl');
+            initCarousel('carousel-cocoon');
+        });
+    </script>
+</body>
+</html>
