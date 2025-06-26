@@ -177,8 +177,10 @@
                                 <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
                                     <img src="B1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=B1.jpg';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 1 de la fiesta en Black Pearl">
                                     <img src="B2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=B2.jpg';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 2 de la fiesta en Black Pearl">
+                                    <video src="BV1.mp4" poster="https://placehold.co/360x640/000000/FFFFFF?text=BV1.mp4" loop muted playsinline class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Video 1 de la fiesta en Black Pearl"></video>
                                     <img src="B3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=B3.jpg';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 3 de la fiesta en Black Pearl">
                                     <img src="B4.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=B4.jpg';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 4 de la fiesta en Black Pearl">
+                                    <video src="BV2.mp4" poster="https://placehold.co/360x640/000000/FFFFFF?text=BV2.mp4" loop muted playsinline class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Video 2 de la fiesta en Black Pearl"></video>
                                     <img src="B5.jpg" onerror="this.onerror=null;this.src='https://placehold.co/360x640?text=B5.jpg';" class="carousel-item w-full flex-shrink-0 object-cover aspect-[9/16]" alt="Foto 5 de la fiesta en Black Pearl">
                                 </div>
                                 <button class="carousel-prev carousel-control-btn absolute top-1/2 left-3 transform -translate-y-1/2 bg-black/40 text-white w-10 h-10 rounded-full z-10 flex items-center justify-center">&#10094;</button>
@@ -244,17 +246,17 @@
         }
         
         // --- Animation on Scroll Logic ---
-        const scrollObserver = new IntersectionObserver((entries) => {
+        const animScrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    scrollObserver.unobserve(entry.target);
+                    animScrollObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.scroll-animate').forEach(el => {
-            scrollObserver.observe(el);
+            animScrollObserver.observe(el);
         });
 
         // --- Carousel Logic ---
@@ -271,8 +273,41 @@
 
             if (totalItems === 0) return;
 
+            // --- Video playback logic with Intersection Observer ---
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const target = entry.target;
+                    if (target.tagName !== 'VIDEO') return;
+
+                    if (entry.isIntersecting) {
+                        target.play().catch(e => console.error("Video autoplay was prevented:", e));
+                    } else {
+                        target.pause();
+                    }
+                });
+            }, {
+                root: carousel, // Check visibility within the carousel container
+                threshold: 0.8  // Trigger when 80% of the video is visible
+            });
+
+            items.forEach(item => {
+                if(item.tagName === 'VIDEO') {
+                    videoObserver.observe(item);
+                }
+            });
+
+            // --- Button controls logic ---
             function updateCarousel() {
                 inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            // Function to pause all videos in this carousel
+            function pauseAllVideos() {
+                 items.forEach(item => {
+                    if (item.tagName === 'VIDEO') {
+                        item.pause();
+                    }
+                });
             }
 
             prevBtn.addEventListener('click', () => {
