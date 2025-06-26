@@ -140,6 +140,15 @@
     </style>
 </head>
 <body class="antialiased">
+    
+    <!-- Pantalla de Bienvenida para iniciar la música -->
+    <div id="enter-overlay" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center cursor-pointer text-white transition-opacity duration-500 ease-in-out">
+        <img src="flowturicon.png" alt="Icono FLOWTUR" class="h-24 w-24 mb-4 animate-pulse" onerror="this.onerror=null; this.src='https://placehold.co/96x96/0A0A0A/22d3ee?text=FT';">
+        <h2 class="text-3xl font-bold">Bienvenido a Flowtur Fiestas</h2>
+        <p class="text-lg mt-2 text-slate-400">Toca para entrar y sentir la música</p>
+        <i class="fas fa-hand-pointer text-4xl mt-8 animate-bounce"></i>
+    </div>
+
 
     <!-- Header -->
     <header class="fixed w-full z-30 top-0 left-0">
@@ -317,10 +326,11 @@
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
         const volumeSlider = document.getElementById('volume-slider');
+        const enterOverlay = document.getElementById('enter-overlay');
 
         function togglePlay() {
             if (backgroundMusic.paused) {
-                backgroundMusic.play().catch(e => console.error("Audio autoplay was prevented. User must interact with the page first."));
+                backgroundMusic.play().catch(e => console.error("Audio play failed:", e));
             } else {
                 backgroundMusic.pause();
             }
@@ -340,31 +350,31 @@
             backgroundMusic.volume = volumeSlider.value;
         }
 
-        // Initialize music player when the document is ready
+        // Initialize everything when the document is ready
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize carousels
             initCarousel('carousel-black-pearl');
             initCarousel('carousel-cocoon');
             
-            // Set initial volume
             backgroundMusic.volume = 0.2;
             volumeSlider.value = 0.2;
 
-            // Add event listeners for music controls
             playPauseBtn.addEventListener('click', togglePlay);
             backgroundMusic.addEventListener('play', updatePlayButton);
             backgroundMusic.addEventListener('pause', updatePlayButton);
             volumeSlider.addEventListener('input', setVolume);
             
-            // Try to autoplay music after a small delay to improve chances of success
-            setTimeout(() => {
-                if(backgroundMusic.paused) {
-                    backgroundMusic.play().catch(e => {
-                        console.log("Autoplay failed, waiting for user interaction.");
-                        // If autoplay fails, we wait for the user to click the play button.
-                    });
+            // Handle the "Click to Enter" overlay
+            enterOverlay.addEventListener('click', () => {
+                enterOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    enterOverlay.style.display = 'none';
+                }, 500); // Match CSS transition duration
+
+                // Now, we can safely play the music as it's triggered by user interaction
+                if (backgroundMusic.paused) {
+                    togglePlay();
                 }
-            }, 1000);
+            }, { once: true }); // The event listener will only run once.
         });
     </script>
 </body>
