@@ -30,6 +30,9 @@
             color: #E0E0E0;
             overflow-x: hidden;
         }
+        body.modal-open {
+            overflow: hidden;
+        }
 
         /* --- Fondo de Malla de Gradiente Sutil --- */
         body::before {
@@ -77,6 +80,7 @@
             border-radius: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             padding: 1.5rem;
+            position: relative;
         }
         
         /* --- Header --- */
@@ -107,36 +111,32 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
         #volume-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 0;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            outline: none;
-            border-radius: 5px;
-            transition: width 0.3s ease-in-out;
+            -webkit-appearance: none; appearance: none;
+            width: 0; height: 5px; background: rgba(255, 255, 255, 0.2);
+            outline: none; border-radius: 5px; transition: width 0.3s ease-in-out;
             opacity: 0;
         }
-        #music-controls:hover #volume-slider {
-            width: 80px;
-            opacity: 1;
-        }
+        #music-controls:hover #volume-slider { width: 80px; opacity: 1; }
         #volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 15px;
-            height: 15px;
-            background: #22d3ee;
-            cursor: pointer;
-            border-radius: 50%;
+            -webkit-appearance: none; appearance: none;
+            width: 15px; height: 15px; background: #22d3ee;
+            cursor: pointer; border-radius: 50%;
         }
         #volume-slider::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            background: #22d3ee;
-            cursor: pointer;
-            border-radius: 50%;
+            width: 15px; height: 15px; background: #22d3ee;
+            cursor: pointer; border-radius: 50%;
         }
+
+        /* --- Estilos del Modal (Pop-up) --- */
+        .modal-container.hidden { display: none; }
+        .modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .modal-container.visible .modal-overlay { opacity: 1; }
+        .modal-container.visible .modal-content { transform: scale(1) translateY(0); opacity: 1; }
     </style>
 </head>
 <body class="antialiased">
@@ -149,15 +149,11 @@
         <i class="fas fa-hand-pointer text-4xl mt-8 animate-bounce"></i>
     </div>
 
-
     <!-- Header -->
     <header class="fixed w-full z-30 top-0 left-0">
         <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3">
-                <img src="flowturicon.png" 
-                     alt="Icono FLOWTUR" 
-                     class="h-10 w-10 sm:h-12 sm:w-12" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/48x48/0A0A0A/22d3ee?text=FT';">
+                <img src="flowturicon.png" alt="Icono FLOWTUR" class="h-10 w-10 sm:h-12 sm:w-12" onerror="this.onerror=null; this.src='https://placehold.co/48x48/0A0A0A/22d3ee?text=FT';">
                 <span class="text-2xl font-bold text-white">FLOWTUR</span>
             </a>
             <a href="index.html#register" class="btn btn-primary ml-4 hidden sm:inline-block">Inscribirse al Torneo</a>
@@ -173,7 +169,13 @@
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
                     <!-- Fiesta 1: Black Pearl -->
                     <div class="modern-card scroll-animate p-4 md:p-6" style="transition-delay: 100ms;">
-                        <h3 class="font-bold mb-2 text-white text-center">Flowtur en <span class="text-gradient">Black Pearl</span></h3>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold mb-2 text-white text-center flex-grow">Flowtur en <span class="text-gradient">Black Pearl</span></h3>
+                            <button class="info-btn text-cyan-400 hover:text-cyan-300 transition-colors"
+                                data-context="Nuestra primera fiesta. Una noche legendaria que puso a Flowtur en el mapa de Valladolid. El local se llenó hasta los topes y la energía fue simplemente increíble. Aquí empezó todo.">
+                                <i class="fas fa-info-circle text-xl"></i>
+                            </button>
+                        </div>
                         <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>19 de Abril de 2025</p>
                         <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Black Pearl, Valladolid</p>
                         <div class="max-w-xs mx-auto">
@@ -195,7 +197,13 @@
 
                     <!-- Fiesta 2: Cocoon Club -->
                     <div class="modern-card scroll-animate p-4 md:p-6" style="transition-delay: 200ms;">
-                        <h3 class="font-bold mb-2 text-white text-center">Flowtur en <span class="text-gradient">Cocoon Club</span></h3>
+                         <div class="flex justify-between items-start">
+                            <h3 class="font-bold mb-2 text-white text-center flex-grow">Flowtur en <span class="text-gradient">Cocoon Club</span></h3>
+                            <button class="info-btn text-cyan-400 hover:text-cyan-300 transition-colors"
+                                data-context="La segunda cita fue en Cocoon Club, donde consolidamos nuestro sonido y ambiente. La noche fue un éxito rotundo, con Djs de primer nivel y un público entregado. ¡La leyenda de Flowtur crecía!">
+                                <i class="fas fa-info-circle text-xl"></i>
+                            </button>
+                        </div>
                         <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>05 de Junio de 2025</p>
                         <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Cocoon Club, Valladolid</p>
                         <div class="max-w-xs mx-auto">
@@ -236,9 +244,19 @@
         </div>
     </footer>
     
+    <!-- Modal de Información -->
+    <div id="info-modal" class="modal-container fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-overlay" class="modal-overlay absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0"></div>
+        <div id="modal-content" class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-md p-6 text-center transform scale-95 opacity-0">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 text-gradient"></h3>
+            <p id="modal-context" class="text-slate-300 mb-6"></p>
+            <button id="modal-close-btn" class="btn btn-secondary">Cerrar</button>
+        </div>
+    </div>
+
     <!-- Controles de Música -->
     <audio id="background-music" src="music.mp3" loop></audio>
-    <div id="music-controls" class="fixed bottom-5 right-5 z-50 flex items-center gap-2 p-2 rounded-full bg-black/50 backdrop-blur-md shadow-lg">
+    <div id="music-controls" class="fixed bottom-5 right-5 z-40 flex items-center gap-2 p-2 rounded-full bg-black/50 backdrop-blur-md shadow-lg">
         <button id="play-pause-btn" class="w-10 h-10 flex items-center justify-center text-white text-lg">
             <i id="play-icon" class="fas fa-play"></i>
             <i id="pause-icon" class="fas fa-pause hidden"></i>
@@ -279,6 +297,7 @@
             function handleMedia(index) {
                 items.forEach((item, i) => {
                     if (item.tagName === 'VIDEO') {
+                        item.muted = true; // Ensure videos in carousel are muted
                         if (i === index) {
                             item.play().catch(e => console.error("Video play failed:", e));
                         } else {
@@ -295,15 +314,8 @@
                 handleMedia(currentIndex);
             }
 
-            prevBtn.addEventListener('click', () => {
-                const newIndex = (currentIndex - 1 + totalItems) % totalItems;
-                updateCarousel(newIndex);
-            });
-
-            nextBtn.addEventListener('click', () => {
-                const newIndex = (currentIndex + 1) % totalItems;
-                updateCarousel(newIndex);
-            });
+            prevBtn.addEventListener('click', () => updateCarousel((currentIndex - 1 + totalItems) % totalItems));
+            nextBtn.addEventListener('click', () => updateCarousel((currentIndex + 1) % totalItems));
             
             const carouselObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -320,61 +332,77 @@
             if(carousel.parentElement.parentElement) carouselObserver.observe(carousel.parentElement.parentElement);
         }
         
-        // --- Music Player Logic ---
-        const backgroundMusic = document.getElementById('background-music');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const playIcon = document.getElementById('play-icon');
-        const pauseIcon = document.getElementById('pause-icon');
-        const volumeSlider = document.getElementById('volume-slider');
-        const enterOverlay = document.getElementById('enter-overlay');
-
-        function togglePlay() {
-            if (backgroundMusic.paused) {
-                backgroundMusic.play().catch(e => console.error("Audio play failed:", e));
-            } else {
-                backgroundMusic.pause();
-            }
-        }
-        
-        function updatePlayButton() {
-            if (backgroundMusic.paused) {
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
-            } else {
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-            }
-        }
-        
-        function setVolume() {
-            backgroundMusic.volume = volumeSlider.value;
-        }
-
-        // Initialize everything when the document is ready
+        // --- Music Player & Modal Logic ---
         document.addEventListener('DOMContentLoaded', () => {
+            // Carousel Init
             initCarousel('carousel-black-pearl');
             initCarousel('carousel-cocoon');
             
-            backgroundMusic.volume = 0.2;
-            volumeSlider.value = 0.2;
+            // Music Player Elements
+            const backgroundMusic = document.getElementById('background-music');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            const volumeSlider = document.getElementById('volume-slider');
+            const enterOverlay = document.getElementById('enter-overlay');
 
+            // Modal Elements
+            const infoModal = document.getElementById('info-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContext = document.getElementById('modal-context');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalOverlay = document.getElementById('modal-overlay');
+
+            // Music Player Functions
+            const togglePlay = () => backgroundMusic.paused ? backgroundMusic.play().catch(e=>console.error(e)) : backgroundMusic.pause();
+            const updatePlayButton = () => {
+                playIcon.classList.toggle('hidden', !backgroundMusic.paused);
+                pauseIcon.classList.toggle('hidden', backgroundMusic.paused);
+            };
+            const setVolume = () => backgroundMusic.volume = volumeSlider.value;
+
+            // Modal Functions
+            const openModal = (title, context) => {
+                modalTitle.textContent = title;
+                modalContext.textContent = context;
+                infoModal.classList.remove('hidden');
+                document.body.classList.add('modal-open');
+                setTimeout(() => infoModal.classList.add('visible'), 10);
+            };
+            const closeModal = () => {
+                infoModal.classList.remove('visible');
+                document.body.classList.remove('modal-open');
+                setTimeout(() => infoModal.classList.add('hidden'), 300);
+            };
+
+            // Event Listeners
             playPauseBtn.addEventListener('click', togglePlay);
             backgroundMusic.addEventListener('play', updatePlayButton);
             backgroundMusic.addEventListener('pause', updatePlayButton);
             volumeSlider.addEventListener('input', setVolume);
             
-            // Handle the "Click to Enter" overlay
+            document.querySelectorAll('.info-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const card = btn.closest('.modern-card');
+                    const title = card.querySelector('h3').textContent;
+                    const context = btn.dataset.context;
+                    openModal(title, context);
+                });
+            });
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', closeModal);
+
+            // Entry Overlay Logic
             enterOverlay.addEventListener('click', () => {
                 enterOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    enterOverlay.style.display = 'none';
-                }, 500); // Match CSS transition duration
+                setTimeout(() => enterOverlay.style.display = 'none', 500);
+                if (backgroundMusic.paused) togglePlay();
+            }, { once: true });
 
-                // Now, we can safely play the music as it's triggered by user interaction
-                if (backgroundMusic.paused) {
-                    togglePlay();
-                }
-            }, { once: true }); // The event listener will only run once.
+            // Initial Settings
+            backgroundMusic.volume = 0.2;
+            volumeSlider.value = 0.2;
         });
     </script>
 </body>
