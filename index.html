@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowtur</title>
+    <title>Flowtur - Torneo de Fútbol y Fiestas</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="flowturicon.png">
@@ -21,9 +21,8 @@
 
     <style>
         /* ========================================
-        NUEVO DISEÑO MODERNO Y MINIMALISTA
-        ========================================
-        */
+        DISEÑO MODERNO Y MINIMALISTA
+        ======================================== */
 
         html {
             scroll-behavior: smooth;
@@ -109,13 +108,13 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 1rem; /* rounded-2xl */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             padding: 1.5rem; /* p-6 */
         }
         .modern-card:hover {
              transform: translateY(-5px);
              box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-             border-color: rgba(255, 255, 255, 0.15);
+             border-color: rgba(34, 211, 238, 0.5);
         }
         
         /* --- Estilos para el Header --- */
@@ -185,11 +184,13 @@
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center space-x-2">
-                <a href="#about" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Sobre Nosotros</a>
-                <a href="#rules" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
-                <a href="#location" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Ubicación</a>
-                <a href="#faq" class="px-4 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">FAQ</a>
+            <div class="hidden lg:flex items-center space-x-1">
+                <a href="#history" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Historia</a>
+                <a href="fiestas.html" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Fiestas</a>
+                <a href="#tournament" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">El Torneo</a>
+                <a href="#rules" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
+                <a href="#location" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Ubicación</a>
+                <a href="#faq" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">FAQ</a>
                 <a href="#register" class="btn btn-primary ml-4">Inscribirse</a>
             </div>
             
@@ -204,7 +205,9 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-lg">
             <div class="flex flex-col items-center p-4 space-y-2">
-                <a href="#about" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Sobre Nosotros</a>
+                <a href="#history" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Historia</a>
+                <a href="fiestas.html" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Fiestas</a>
+                <a href="#tournament" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">El Torneo</a>
                 <a href="#rules" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Reglas</a>
                 <a href="#location" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Ubicación</a>
                 <a href="#faq" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">FAQ</a>
@@ -222,38 +225,55 @@
                     <span class="text-gradient">FLOWTUR</span>
                 </h1>
                 <p class="text-lg sm:text-xl mt-6 mb-10 text-slate-400 max-w-2xl mx-auto">
-                    La fusión perfecta de fútbol 7 y fiesta. Compite, diviértete y vive una experiencia única en Valladolid.
+                    La fusión perfecta de fútbol y fiesta. Compite, diviértete y vive una experiencia única en Valladolid.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="#register" class="btn btn-primary text-lg">
                         ¡Inscríbete ahora! <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
-                    <a href="#about" class="btn btn-secondary text-lg">
-                        Saber más
+                    <a href="#history" class="btn btn-secondary text-lg">
+                        Conoce nuestra historia
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-20 sm:py-32">
+        <!-- History Section -->
+        <section id="history" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center scroll-animate">
-                    <h2 class="text-center mb-4">Sobre el <span class="text-gradient">Torneo</span></h2>
+                    <h2 class="text-center mb-4">Nuestra <span class="text-gradient">Historia</span></h2>
                     <p class="text-lg text-slate-400 mb-10">
-                        ¡Bienvenidos a FLOWTUR FC! (Sí, somos los de las fiestas).
+                        De una idea entre amigos a crear eventos inolvidables.
                     </p>
                     <div class="modern-card text-left">
                         <p class="text-base sm:text-lg leading-relaxed text-slate-300">
-                           Nuestro objetivo es crear una experiencia competitiva y divertida. La inscripción es individual y nosotros nos encargaremos de formar los equipos buscando el mayor equilibrio. ¡Anunciaremos las fechas y la ubicación próximamente, así que permanece atento a nuestras redes!
+                           Flowtur nació de la pasión por juntar a la gente, crear buen ambiente y disfrutar de la música y el deporte. Empezamos organizando fiestas privadas que poco a poco se hicieron famosas por su energía única. Ahora, queremos llevar esa misma pasión al campo de fútbol, creando un torneo donde la competitividad y la diversión van de la mano. ¡Somos los de las fiestas, y ahora también los del fútbol!
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Tournament Section -->
+        <section id="tournament" class="py-20 sm:py-32  bg-black/20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto text-center scroll-animate">
+                    <h2 class="text-center mb-4">El Torneo <span class="text-gradient">Flowtur FC</span></h2>
+                    <p class="text-lg text-slate-400 mb-10">
+                        Llevamos la energía de nuestras fiestas al campo de fútbol.
+                    </p>
+                    <div class="modern-card text-left">
+                        <p class="text-base sm:text-lg leading-relaxed text-slate-300">
+                           Hemos creado un torneo de fútbol 7 donde el objetivo principal es disfrutar de una experiencia competitiva y divertida. La inscripción es individual y nosotros nos encargaremos de formar los equipos buscando el mayor equilibrio posible para que cada partido sea un desafío. ¡Anunciaremos las fechas y todos los detalles próximamente, así que permanece atento a nuestras redes sociales!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Rules Section -->
-        <section id="rules" class="py-20 sm:py-32 bg-black/20">
+        <section id="rules" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">Reglamento del <span class="text-gradient">Torneo</span></h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -268,7 +288,7 @@
         </section>
         
         <!-- Registration Section -->
-        <section id="register" class="py-20 sm:py-32">
+        <section id="register" class="py-20 sm:py-32  bg-black/20">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-2xl mx-auto text-center scroll-animate">
                     <h2 class="mb-4">Inscríbete <span class="text-gradient">Ahora</span></h2>
@@ -288,12 +308,12 @@
         </section>
 
         <!-- Location Section -->
-        <section id="location" class="py-20 sm:py-32 bg-black/20">
+        <section id="location" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center scroll-animate">
                     <h2 class="text-center mb-12">Nuestra <span class="text-gradient">Ubicación</span></h2>
                     <p class="text-lg text-slate-400 mb-10">
-                        Los partidos se jugarán en los campos del Parquesol.
+                        Los partidos se jugarán en los campos de Parquesol, un lugar de referencia para el fútbol en Valladolid.
                     </p>
                     <div class="modern-card p-0 overflow-hidden scroll-animate" style="transition-delay: 200ms;">
                         <iframe 
@@ -310,7 +330,7 @@
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="py-20 sm:py-32">
+        <section id="faq" class="py-20 sm:py-32 bg-black/20">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Frecuentes</span></h2>
                 <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
@@ -366,6 +386,7 @@
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
         // --- Supabase Configuration ---
+        // ATTENTION: These are example keys. Replace with your actual Supabase keys.
         const SUPABASE_URL = 'https://nxthxjarwushdcpwxgmo.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dGh4amFyd3VzaGRjcHd4Z21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzM2NTMsImV4cCI6MjA2NTgwOTY1M30.pI4VcJRNGTDpzZsUHub33WqFL8DidAC1Vl3-4zzySkY';
         let supabase;
@@ -396,7 +417,10 @@
         // Close mobile menu when a link is clicked
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                // For external links, it will navigate away. For anchor links, it will close the menu.
+                 if (link.href.includes('#')) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
 
@@ -405,19 +429,23 @@
             faqAccordion.addEventListener('click', (e) => {
                 const question = e.target.closest('.faq-question');
                 if (question) {
+                    // Close all other open items
+                    const allItems = faqAccordion.querySelectorAll('.faq-item');
+                    allItems.forEach(item => {
+                        if (item !== question.parentElement && item.classList.contains('open')) {
+                            item.classList.remove('open');
+                        }
+                    });
+                    // Toggle the clicked item
                     question.parentElement.classList.toggle('open');
                 }
             });
         }
 
         // Handle form submission
-        if(registrationForm) {
+        if(registrationForm && supabase) {
             registrationForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                if (!supabase) {
-                     displayToast("Error de conexión con la base de datos.", true);
-                     return;
-                }
                 setLoading(true);
                 const { error } = await supabase
                     .from('players')
@@ -436,6 +464,11 @@
                 }
                 setLoading(false);
             });
+        } else if(registrationForm) {
+            registrationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                displayToast("Error: La base de datos no está conectada.", true);
+            });
         }
 
         // --- Animations on Scroll ---
@@ -443,6 +476,8 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    // Optional: unobserve after animation to save resources
+                    // scrollObserver.unobserve(entry.target); 
                 }
             });
         }, { threshold: 0.1 });
@@ -482,4 +517,3 @@
     </script>
 </body>
 </html>
-
