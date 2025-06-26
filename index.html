@@ -23,10 +23,7 @@
         /* ========================================
         DISEÑO MODERNO Y MINIMALISTA
         ======================================== */
-
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #0A0A0A;
@@ -49,11 +46,7 @@
             animation: fadeInBackground 3s ease-in-out forwards;
             opacity: 0;
         }
-        
-        @keyframes fadeInBackground {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeInBackground { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- Estilos de Tipografía --- */
         .text-gradient {
@@ -63,12 +56,7 @@
             background-clip: text;
             text-fill-color: transparent;
         }
-        
-        h2 {
-           font-weight: 700;
-           font-size: 2.5rem; /* Equivalente a text-4xl */
-           line-height: 1.2;
-        }
+        h2 { font-weight: 700; font-size: 2.5rem; line-height: 1.2; }
 
         /* --- Botones Modernos --- */
         .btn {
@@ -107,9 +95,9 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 1rem; /* rounded-2xl */
+            border-radius: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            padding: 1.5rem; /* p-6 */
+            padding: 1.5rem;
         }
         .modern-card:hover {
              transform: translateY(-5px);
@@ -117,7 +105,7 @@
              border-color: rgba(34, 211, 238, 0.5);
         }
         
-        /* --- Estilos para el Header --- */
+        /* --- Header --- */
         header {
             background-color: rgba(10, 10, 10, 0.5);
             backdrop-filter: blur(12px);
@@ -127,46 +115,34 @@
 
         /* --- Formulario --- */
         .form-input {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            background-color: #1a1a1a; border: 1px solid #333; color: white;
+            border-radius: 0.5rem; padding: 0.75rem 1rem; transition: all 0.3s ease;
         }
         .form-input:focus {
-            outline: none;
-            border-color: #22d3ee;
+            outline: none; border-color: #22d3ee;
             box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
         }
         
         /* --- Acordeón FAQ --- */
         .faq-answer {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: max-height 0.5s ease-in-out, padding 0.5s ease;
             padding: 0 1.5rem;
         }
-        .faq-item.open .faq-answer {
-             max-height: 200px;
-             padding: 0 1.5rem 1.5rem;
-        }
-        .faq-item.open .faq-chevron {
-            transform: rotate(180deg);
-        }
-        .faq-chevron {
-            transition: transform 0.3s ease;
-        }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.5rem; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+        .faq-chevron { transition: transform 0.3s ease; }
         
-        /* --- Animaciones al hacer scroll --- */
+        /* --- Animaciones al scroll --- */
         .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 0; transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Estilo de mapa oscuro --- */
+        .map-dark {
+            filter: invert(1) hue-rotate(180deg);
         }
     </style>
 </head>
@@ -224,15 +200,18 @@
                 <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase">
                     <span class="text-gradient">FLOWTUR</span>
                 </h1>
-                <p class="text-lg sm:text-xl mt-6 mb-10 text-slate-400 max-w-2xl mx-auto">
-                    La fusión perfecta de fútbol y fiesta. Compite, diviértete y vive una experiencia única en Valladolid.
+                <p class="text-lg sm:text-xl mt-6 mb-10 text-slate-300 max-w-2xl mx-auto">
+                    Más que un torneo. Una experiencia que une fútbol 7, música y amigos en el corazón de Valladolid. ¿Estás listo?
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="#register" class="btn btn-primary text-lg">
-                        ¡Inscríbete ahora! <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        Apúntate al Torneo <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                     <a href="#history" class="btn btn-secondary text-lg">
-                        Conoce nuestra historia
+                        Nuestra Historia
+                    </a>
+                    <a href="fiestas.html" class="btn btn-secondary text-lg">
+                        Ver Fiestas Pasadas
                     </a>
                 </div>
             </div>
@@ -248,7 +227,7 @@
                     </p>
                     <div class="modern-card text-left">
                         <p class="text-base sm:text-lg leading-relaxed text-slate-300">
-                           Flowtur Fiestas nació de la pasión por juntar a la gente, crear buen ambiente y disfrutar de la música. Empezamos poco a poco, sin tener nada, pero poco a poco nos hemos ido ganando terreno aquí, ofreciendo uno de los mejores ambientes en valladolid, y pronto, en otros lados de España...; Simplementes somos un grupo de chavales con pasión por nuestro trabajo, nos gusta lo que hacemos, y lo hacemos bien, esto es FLOWTUR, un sentimiento.
+                           Flowtur Fiestas nació de la pasión por juntar a la gente, crear buen ambiente y disfrutar de la música. Empezamos poco a poco, sin tener nada, pero poco a poco nos hemos ido ganando terreno aquí, ofreciendo uno de los mejores ambientes en Valladolid, y pronto, en otros lados de España...; Simplemente somos un grupo de chavales con pasión por nuestro trabajo, nos gusta lo que hacemos, y lo hacemos bien, esto es FLOWTUR, un sentimiento.
                         </p>
                     </div>
                 </div>
@@ -261,11 +240,11 @@
                 <div class="max-w-4xl mx-auto text-center scroll-animate">
                     <h2 class="text-center mb-4">El Torneo <span class="text-gradient">Flowtur FC</span></h2>
                     <p class="text-lg text-slate-400 mb-10">
-                        Llevamos la energía de nuestras fiestas al campo de fútbol.
+                        La misma energía de nuestras fiestas, ahora sobre el césped.
                     </p>
                     <div class="modern-card text-left">
                         <p class="text-base sm:text-lg leading-relaxed text-slate-300">
-                           Hemos creado un torneo de fútbol 7 donde el objetivo principal es disfrutar de una experiencia competitiva y divertida. La inscripción es individual y nosotros nos encargaremos de formar los equipos buscando el mayor equilibrio posible para que cada partido sea un desafío. ¡Anunciaremos las fechas y todos los detalles próximamente, así que permanece atento a nuestras redes sociales!
+                           Trasladamos la esencia de Flowtur al fútbol 7. Buscamos competición sana, partidazos y, sobre todo, buen rollo. Por eso, la inscripción es individual: nosotros creamos los equipos para que estén lo más igualados posible. Queremos que cada partido sea un espectáculo. Las fechas y todos los detalles se anunciarán pronto. ¡Sigue nuestras redes para no perderte nada!
                         </p>
                     </div>
                 </div>
@@ -275,14 +254,14 @@
         <!-- Rules Section -->
         <section id="rules" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="text-center mb-12 scroll-animate">Reglamento del <span class="text-gradient">Torneo</span></h2>
+                <h2 class="text-center mb-12 scroll-animate">El <span class="text-gradient">Reglamento</span></h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 100ms"><i class="fas fa-users text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por la organización para máximo equilibrio.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 200ms"><i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Partidos de 2 partes de 20 min, con 5 min de descanso.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 300ms"><i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es clave. La conducta antideportiva será sancionada.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 400ms"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y volantes para mantener el ritmo del partido.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 500ms"><i class="fas fa-shirt text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Calzado adecuado obligatorio. La organización proporcionará petos.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 600ms"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡A por la gloria!</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 100ms"><i class="fas fa-users text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por nosotros para máxima igualdad.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 200ms"><i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Dos partes de 20 minutos con 5 de descanso. Intensidad pura.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 300ms"><i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es ley. Malos rollos y conductas antideportivas, fuera.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 400ms"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y al vuelo para que el ritmo no pare.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 500ms"><i class="fas fa-shirt text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Uso de botas adecuadas obligatorio. Nosotros ponemos los petos.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 600ms"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡Que gane el mejor!</p></div>
                 </div>
             </div>
         </section>
@@ -292,7 +271,7 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-2xl mx-auto text-center scroll-animate">
                     <h2 class="mb-4">Inscríbete <span class="text-gradient">Ahora</span></h2>
-                    <p class="text-lg text-slate-400 mb-10">Las plazas son limitadas. Asegura tu sitio y prepárate para la acción.</p>
+                    <p class="text-lg text-slate-400 mb-10">Las plazas vuelan. No te quedes fuera y asegura tu sitio para la que vamos a liar.</p>
                 </div>
                 <div class="max-w-2xl mx-auto modern-card scroll-animate" style="transition-delay: 200ms;">
                     <form id="registration-form" class="space-y-6">
@@ -311,14 +290,14 @@
         <section id="location" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center scroll-animate">
-                    <h2 class="text-center mb-12">Nuestra <span class="text-gradient">Ubicación</span></h2>
+                    <h2 class="text-center mb-12">El <span class="text-gradient">Campo de Batalla</span></h2>
                     <p class="text-lg text-slate-400 mb-10">
-                        Los partidos se jugarán en los campos de Parquesol, un lugar de referencia para el fútbol en Valladolid.
+                        Jugaremos en los míticos campos de Parquesol, el sitio perfecto para que ruede el balón en Valladolid.
                     </p>
                     <div class="modern-card p-0 overflow-hidden scroll-animate" style="transition-delay: 200ms;">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.836377757758!2d-4.706199323396482!3d41.65997287126133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4768a8537c3555%3A0x943e628464a93541!2sC.%20de%20Mart%C3%ADn%20Santos%20Romero%2C%202%2C%2047016%20Valladolid%2C%20Spain!5e0!3m2!1ses!2ses" 
-                            class="w-full h-96 md:h-[500px]"
+                            class="w-full h-96 md:h-[500px] map-dark"
                             style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
@@ -332,31 +311,31 @@
         <!-- FAQ Section -->
         <section id="faq" class="py-20 sm:py-32 bg-black/20">
             <div class="container mx-auto px-4 sm:px-6">
-                <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Frecuentes</span></h2>
+                <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Clave</span></h2>
                 <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
                     <!-- FAQ Item 1 -->
                     <div class="faq-item modern-card scroll-animate" style="transition-delay: 100ms;">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
-                            <h3 class="font-semibold text-lg text-white">¿Necesito tener un equipo para inscribirme?</h3>
+                            <h3 class="font-semibold text-lg text-white">¿Tengo que venir con un equipo?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
                         </div>
-                        <div class="faq-answer text-slate-400"><p class="pt-4">No, la inscripción es individual. Nosotros nos encargamos de crear los equipos de la manera más equilibrada posible para asegurar la competitividad y la diversión.</p></div>
+                        <div class="faq-answer text-slate-400"><p class="pt-4">¡Para nada! Vienes tú, y nosotros ponemos la magia. Nos encargamos de crear los equipos para que haya máxima igualdad y competitividad. Tú solo trae las ganas de jugar.</p></div>
                     </div>
                     <!-- FAQ Item 2 -->
                     <div class="faq-item modern-card scroll-animate" style="transition-delay: 200ms;">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
-                            <h3 class="font-semibold text-lg text-white">¿Cuál es el coste de la inscripción?</h3>
+                            <h3 class="font-semibold text-lg text-white">¿Cuánto cuesta la inscripción?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
                         </div>
-                        <div class="faq-answer text-slate-400"><p class="pt-4">El precio de la inscripción se anunciará junto con las fechas oficiales del torneo. El pago incluirá la participación, agua durante los partidos y el seguro correspondiente.</p></div>
+                        <div class="faq-answer text-slate-400"><p class="pt-4">Anunciaremos el precio junto a las fechas oficiales. Ten por seguro que incluirá tu participación, agua para los partidos y el seguro necesario. ¡Lo estamos preparando todo!</p></div>
                     </div>
                     <!-- FAQ Item 3 -->
                     <div class="faq-item modern-card scroll-animate" style="transition-delay: 300ms;">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
-                            <h3 class="font-semibold text-lg text-white">¿Qué debo llevar a los partidos?</h3>
+                            <h3 class="font-semibold text-lg text-white">¿Qué necesito llevar a los partidos?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
                         </div>
-                        <div class="faq-answer text-slate-400"><p class="pt-4">Debes traer tu propia ropa deportiva, espinilleras (recomendado) y botas de fútbol para césped artificial. Nosotros proporcionaremos los petos para diferenciar a los equipos y los balones.</p></div>
+                        <div class="faq-answer text-slate-400"><p class="pt-4">Tu ropa de guerra (ropa deportiva), botas de fútbol para césped artificial y, si quieres, tus espinilleras. De los petos para distinguir a los equipos y los balones nos encargamos nosotros.</p></div>
                     </div>
                 </div>
             </div>
@@ -417,7 +396,6 @@
         // Close mobile menu when a link is clicked
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                // For external links, it will navigate away. For anchor links, it will close the menu.
                  if (link.href.includes('#')) {
                     mobileMenu.classList.add('hidden');
                 }
@@ -429,14 +407,12 @@
             faqAccordion.addEventListener('click', (e) => {
                 const question = e.target.closest('.faq-question');
                 if (question) {
-                    // Close all other open items
                     const allItems = faqAccordion.querySelectorAll('.faq-item');
                     allItems.forEach(item => {
                         if (item !== question.parentElement && item.classList.contains('open')) {
                             item.classList.remove('open');
                         }
                     });
-                    // Toggle the clicked item
                     question.parentElement.classList.toggle('open');
                 }
             });
@@ -476,8 +452,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Optional: unobserve after animation to save resources
-                    // scrollObserver.unobserve(entry.target); 
+                    scrollObserver.unobserve(entry.target); 
                 }
             });
         }, { threshold: 0.1 });
