@@ -98,6 +98,7 @@
         .scroll-animate.visible { opacity: 1; transform: translateY(0); }
 
         /* --- Estilos del Carrusel --- */
+        .carousel-item > img { cursor: zoom-in; }
         .carousel-control-btn {
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
@@ -259,12 +260,19 @@
     
     <!-- Modal de Información -->
     <div id="info-modal" class="modal-container fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
-        <div id="modal-overlay" class="modal-overlay absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0"></div>
-        <div id="modal-content" class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-md p-6 text-center transform scale-95 opacity-0">
+        <div class="modal-overlay absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0"></div>
+        <div class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-md p-6 text-center transform scale-95 opacity-0">
             <h3 id="modal-title" class="text-2xl font-bold mb-4 text-gradient"></h3>
             <p id="modal-context" class="text-slate-300 mb-6"></p>
             <button id="modal-close-btn" class="btn btn-secondary">Cerrar</button>
         </div>
+    </div>
+
+    <!-- Lightbox para imágenes -->
+    <div id="image-lightbox" class="modal-container fixed inset-0 z-[60] flex items-center justify-center p-4 hidden">
+        <div class="modal-overlay absolute inset-0 bg-black/90 backdrop-blur-sm opacity-0"></div>
+        <img id="lightbox-image" src="" alt="Vista ampliada" class="relative max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl transform scale-95 opacity-0 transition-transform,opacity">
+        <button id="lightbox-close-btn" class="absolute top-4 right-4 text-white text-4xl hover:text-cyan-300 transition-colors">&times;</button>
     </div>
 
     <!-- Controles de Música -->
@@ -366,6 +374,11 @@
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const modalOverlay = document.getElementById('modal-overlay');
 
+            // Lightbox Elements
+            const imageLightbox = document.getElementById('image-lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+
             // Music Player Functions
             const togglePlay = () => backgroundMusic.paused ? backgroundMusic.play().catch(e=>console.error(e)) : backgroundMusic.pause();
             const updatePlayButton = () => {
@@ -388,6 +401,26 @@
                 setTimeout(() => infoModal.classList.add('hidden'), 300);
             };
 
+            // Lightbox Functions
+            const openLightbox = (src) => {
+                lightboxImage.src = src;
+                imageLightbox.classList.remove('hidden');
+                document.body.classList.add('modal-open');
+                setTimeout(() => {
+                    imageLightbox.classList.add('visible');
+                    lightboxImage.style.transform = 'scale(1)';
+                    lightboxImage.style.opacity = '1';
+                }, 10);
+            };
+            const closeLightbox = () => {
+                imageLightbox.classList.remove('visible');
+                lightboxImage.style.transform = 'scale(0.95)';
+                lightboxImage.style.opacity = '0';
+                document.body.classList.remove('modal-open');
+                setTimeout(() => imageLightbox.classList.add('hidden'), 300);
+            };
+
+
             // Event Listeners
             playPauseBtn.addEventListener('click', togglePlay);
             backgroundMusic.addEventListener('play', updatePlayButton);
@@ -404,7 +437,15 @@
             });
 
             modalCloseBtn.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', closeModal);
+            infoModal.querySelector('.modal-overlay').addEventListener('click', closeModal);
+
+            document.querySelectorAll('.carousel-item img').forEach(img => {
+                img.addEventListener('click', () => openLightbox(img.src));
+            });
+
+            lightboxCloseBtn.addEventListener('click', closeLightbox);
+            imageLightbox.querySelector('.modal-overlay').addEventListener('click', closeLightbox);
+
 
             // Entry Overlay Logic
             enterOverlay.addEventListener('click', () => {
