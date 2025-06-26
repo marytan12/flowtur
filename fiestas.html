@@ -63,15 +63,6 @@
             text-align: center; transition: all 0.3s ease; display: inline-block;
             border: 1px solid transparent;
         }
-        .btn-primary {
-            background-image: linear-gradient(to right, #ec4899 0%, #ef4444 51%, #ec4899 100%);
-            background-size: 200% auto; color: white;
-            box-shadow: 0 4px 15px 0 rgba(236, 72, 153, 0.4);
-        }
-        .btn-primary:hover {
-            background-position: right center; transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px 0 rgba(236, 72, 153, 0.5);
-        }
         .btn-secondary {
             background-color: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);
             color: #E0E0E0;
@@ -86,10 +77,6 @@
             border-radius: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             padding: 1.5rem;
-        }
-        .modern-card:hover {
-             transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-             border-color: rgba(34, 211, 238, 0.5);
         }
         
         /* --- Header --- */
@@ -114,6 +101,42 @@
             background-color: rgba(0, 0, 0, 0.75) !important;
             transform: scale(1.1) translateY(-50%);
         }
+        
+        /* --- Controles de Música --- */
+        #music-controls {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            border-radius: 5px;
+            transition: width 0.3s ease-in-out;
+            opacity: 0;
+        }
+        #music-controls:hover #volume-slider {
+            width: 80px;
+            opacity: 1;
+        }
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #22d3ee;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        #volume-slider::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: #22d3ee;
+            cursor: pointer;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -128,34 +151,8 @@
                      onerror="this.onerror=null; this.src='https://placehold.co/48x48/0A0A0A/22d3ee?text=FT';">
                 <span class="text-2xl font-bold text-white">FLOWTUR</span>
             </a>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center space-x-1">
-                <a href="index.html#history" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Historia</a>
-                <a href="fiestas.html" class="px-3 py-2 text-white font-semibold transition-colors duration-300 rounded-md">Fiestas</a>
-                <a href="index.html#tournament" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">El Torneo</a>
-                <a href="index.html#rules" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
-                <a href="index.html#register" class="btn btn-primary ml-4">Inscribirse al Torneo</a>
-            </div>
-            
-            <!-- Mobile Menu Button -->
-            <div class="lg:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none p-2" aria-label="Abrir menú">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+            <a href="index.html#register" class="btn btn-primary ml-4 hidden sm:inline-block">Inscribirse al Torneo</a>
         </nav>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-lg z-20">
-            <div class="flex flex-col items-center p-4 space-y-2">
-                <a href="index.html#history" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Historia</a>
-                <a href="fiestas.html" class="mobile-menu-link block py-2 px-4 text-lg text-white font-semibold w-full text-center">Fiestas</a>
-                <a href="index.html#tournament" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">El Torneo</a>
-                <a href="index.html#rules" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Reglas</a>
-                <a href="index.html#register" class="mobile-menu-link block py-3 px-6 text-lg text-white font-bold w-full text-center mt-4 btn btn-primary">Inscribirse al Torneo</a>
-            </div>
-        </div>
     </header>
 
     <!-- Main Content -->
@@ -170,8 +167,6 @@
                         <h3 class="font-bold mb-2 text-white text-center">Flowtur en <span class="text-gradient">Black Pearl</span></h3>
                         <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>19 de Abril de 2025</p>
                         <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Black Pearl, Valladolid</p>
-
-                        <!-- Carousel Black Pearl -->
                         <div class="max-w-xs mx-auto">
                             <div id="carousel-black-pearl" class="relative overflow-hidden rounded-lg bg-black/20 mt-4 shadow-lg">
                                 <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
@@ -194,8 +189,6 @@
                         <h3 class="font-bold mb-2 text-white text-center">Flowtur en <span class="text-gradient">Cocoon Club</span></h3>
                         <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>05 de Junio de 2025</p>
                         <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Cocoon Club, Valladolid</p>
-
-                        <!-- Carousel Cocoon Club -->
                         <div class="max-w-xs mx-auto">
                             <div id="carousel-cocoon" class="relative overflow-hidden rounded-lg bg-black/20 mt-4 shadow-lg">
                                 <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
@@ -234,17 +227,18 @@
         </div>
     </footer>
     
+    <!-- Controles de Música -->
+    <audio id="background-music" src="music.mp3" loop></audio>
+    <div id="music-controls" class="fixed bottom-5 right-5 z-50 flex items-center gap-2 p-2 rounded-full bg-black/50 backdrop-blur-md shadow-lg">
+        <button id="play-pause-btn" class="w-10 h-10 flex items-center justify-center text-white text-lg">
+            <i id="play-icon" class="fas fa-play"></i>
+            <i id="pause-icon" class="fas fa-pause hidden"></i>
+        </button>
+        <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.2">
+    </div>
+    
     <!-- App Logic -->
     <script>
-        // --- Mobile Menu Logic ---
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-        
         // --- Animation on Scroll Logic ---
         const animScrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -308,23 +302,69 @@
                         handleMedia(currentIndex);
                     } else {
                         items.forEach(item => {
-                           if (item.tagName === 'VIDEO') {
-                               item.pause();
-                           }
+                           if (item.tagName === 'VIDEO') item.pause();
                         });
                     }
                 });
             }, { threshold: 0.5 });
 
-            if(carousel.parentElement.parentElement){
-                 carouselObserver.observe(carousel.parentElement.parentElement);
+            if(carousel.parentElement.parentElement) carouselObserver.observe(carousel.parentElement.parentElement);
+        }
+        
+        // --- Music Player Logic ---
+        const backgroundMusic = document.getElementById('background-music');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const volumeSlider = document.getElementById('volume-slider');
+
+        function togglePlay() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(e => console.error("Audio autoplay was prevented. User must interact with the page first."));
+            } else {
+                backgroundMusic.pause();
             }
         }
+        
+        function updatePlayButton() {
+            if (backgroundMusic.paused) {
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            } else {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }
+        }
+        
+        function setVolume() {
+            backgroundMusic.volume = volumeSlider.value;
+        }
 
-        // Initialize all carousels on the page when the document is ready.
+        // Initialize music player when the document is ready
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize carousels
             initCarousel('carousel-black-pearl');
             initCarousel('carousel-cocoon');
+            
+            // Set initial volume
+            backgroundMusic.volume = 0.2;
+            volumeSlider.value = 0.2;
+
+            // Add event listeners for music controls
+            playPauseBtn.addEventListener('click', togglePlay);
+            backgroundMusic.addEventListener('play', updatePlayButton);
+            backgroundMusic.addEventListener('pause', updatePlayButton);
+            volumeSlider.addEventListener('input', setVolume);
+            
+            // Try to autoplay music after a small delay to improve chances of success
+            setTimeout(() => {
+                if(backgroundMusic.paused) {
+                    backgroundMusic.play().catch(e => {
+                        console.log("Autoplay failed, waiting for user interaction.");
+                        // If autoplay fails, we wait for the user to click the play button.
+                    });
+                }
+            }, 1000);
         });
     </script>
 </body>
