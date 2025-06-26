@@ -21,7 +21,7 @@
 
     <style>
         /* ========================================
-        DISEÑO MODERNO Y MINIMALISTA
+        DISEÑO MODERNO Y DINÁMICO
         ======================================== */
         html { scroll-behavior: smooth; }
         body {
@@ -31,8 +31,8 @@
             overflow-x: hidden;
         }
 
-        /* --- Fondo de Malla de Gradiente Sutil --- */
-        body::before {
+        /* --- Fondo de Malla de Gradiente con Parallax --- */
+        #background-mesh {
             content: '';
             position: fixed;
             top: 0;
@@ -40,9 +40,10 @@
             width: 100vw;
             height: 100vh;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.2) 0%, transparent 25%),
-                radial-gradient(circle at 85% 75%, rgba(236, 72, 153, 0.2) 0%, transparent 25%);
+                radial-gradient(circle at var(--x1, 15%) var(--y1, 15%), rgba(34, 211, 238, 0.2) 0%, transparent 25%),
+                radial-gradient(circle at var(--x2, 85%) var(--y2, 75%), rgba(236, 72, 153, 0.2) 0%, transparent 25%);
             z-index: -1;
+            transition: background-image 1s ease-in-out;
             animation: fadeInBackground 3s ease-in-out forwards;
             opacity: 0;
         }
@@ -58,21 +59,23 @@
         }
         h2 { font-weight: 700; font-size: 2.5rem; line-height: 1.2; }
 
-        /* --- Botones Modernos --- */
+        /* --- Botones Modernos y Dinámicos --- */
         .btn {
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
             font-weight: 600;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: inline-block;
             border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
         .btn-primary {
             background-image: linear-gradient(to right, #ec4899 0%, #ef4444 51%, #ec4899 100%);
             background-size: 200% auto;
             color: white;
-            box-shadow: 0 4px 15px 0 rgba(236, 72, 153, 0.4);
+            box-shadow: 0 4px 15px 0 rgba(236, 72, 153, 0.3);
         }
         .btn-primary:hover {
             background-position: right center;
@@ -87,30 +90,44 @@
         .btn-secondary:hover {
             background-color: rgba(255, 255, 255, 0.1);
             border-color: #22d3ee;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.1);
         }
 
-        /* --- Tarjetas Minimalistas --- */
+        /* --- Tarjetas Minimalistas con Efecto de Brillo --- */
         .modern-card {
             background: rgba(16, 16, 16, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
             padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
         .modern-card:hover {
-             transform: translateY(-5px);
-             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-             border-color: rgba(34, 211, 238, 0.5);
+             transform: translateY(-8px) scale(1.02);
+             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+             border-color: rgba(34, 211, 238, 0.4);
+        }
+        .modern-card .fa-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .modern-card:hover .fa-icon {
+            transform: scale(1.1) rotate(-5deg);
         }
         
         /* --- Header --- */
         header {
-            background-color: rgba(10, 10, 10, 0.5);
+            background-color: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background-color 0.3s ease;
+        }
+        header.scrolled {
+            background-color: rgba(10, 10, 10, 0.8);
         }
 
         /* --- Formulario --- */
@@ -126,17 +143,18 @@
         /* --- Acordeón FAQ --- */
         .faq-answer {
             max-height: 0; overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease;
-            padding: 0 1.5rem;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease, opacity 0.5s ease;
+            padding: 0 1.5rem; opacity: 0;
         }
-        .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.5rem; }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 1.5rem 1.5rem; opacity: 1; }
         .faq-item.open .faq-chevron { transform: rotate(180deg); }
-        .faq-chevron { transition: transform 0.3s ease; }
+        .faq-chevron { transition: transform 0.4s ease; }
         
         /* --- Animaciones al scroll --- */
         .scroll-animate {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .scroll-animate.visible { opacity: 1; transform: translateY(0); }
 
@@ -147,9 +165,10 @@
     </style>
 </head>
 <body class="antialiased">
+    <div id="background-mesh"></div>
 
     <!-- Header -->
-    <header class="fixed w-full z-20 top-0 left-0">
+    <header id="main-header" class="fixed w-full z-20 top-0 left-0">
         <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
                 <img src="flowturicon.png" 
@@ -256,12 +275,12 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">El <span class="text-gradient">Reglamento</span></h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 100ms"><i class="fas fa-users text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por nosotros para máxima igualdad.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 200ms"><i class="fas fa-clock text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Dos partes de 20 minutos con 5 de descanso. Intensidad pura.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 300ms"><i class="fas fa-handshake text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es ley. Malos rollos y conductas antideportivas, fuera.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 400ms"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y al vuelo para que el ritmo no pare.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 500ms"><i class="fas fa-shirt text-4xl text-pink-500 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Uso de botas adecuadas obligatorio. Nosotros ponemos los petos.</p></div>
-                    <div class="modern-card text-center scroll-animate" style="transition-delay: 600ms"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡Que gane el mejor!</p></div>
+                    <div class="modern-card text-center scroll-animate" data-delay="100"><i class="fas fa-users text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por nosotros para máxima igualdad.</p></div>
+                    <div class="modern-card text-center scroll-animate" data-delay="200"><i class="fas fa-clock text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Dos partes de 20 minutos con 5 de descanso. Intensidad pura.</p></div>
+                    <div class="modern-card text-center scroll-animate" data-delay="300"><i class="fas fa-handshake text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es ley. Malos rollos y conductas antideportivas, fuera.</p></div>
+                    <div class="modern-card text-center scroll-animate" data-delay="400"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y al vuelo para que el ritmo no pare.</p></div>
+                    <div class="modern-card text-center scroll-animate" data-delay="500"><i class="fas fa-shirt text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Uso de botas adecuadas obligatorio. Nosotros ponemos los petos.</p></div>
+                    <div class="modern-card text-center scroll-animate" data-delay="600"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡Que gane el mejor!</p></div>
                 </div>
             </div>
         </section>
@@ -314,7 +333,7 @@
                 <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Clave</span></h2>
                 <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
                     <!-- FAQ Item 1 -->
-                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 100ms;">
+                    <div class="faq-item modern-card scroll-animate" data-delay="100">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
                             <h3 class="font-semibold text-lg text-white">¿Tengo que venir con un equipo?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
@@ -322,7 +341,7 @@
                         <div class="faq-answer text-slate-400"><p class="pt-4">¡Para nada! Vienes tú, y nosotros ponemos la magia. Nos encargamos de crear los equipos para que haya máxima igualdad y competitividad. Tú solo trae las ganas de jugar.</p></div>
                     </div>
                     <!-- FAQ Item 2 -->
-                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 200ms;">
+                    <div class="faq-item modern-card scroll-animate" data-delay="200">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
                             <h3 class="font-semibold text-lg text-white">¿Cuánto cuesta la inscripción?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
@@ -330,7 +349,7 @@
                         <div class="faq-answer text-slate-400"><p class="pt-4">Anunciaremos el precio junto a las fechas oficiales. Ten por seguro que incluirá tu participación, agua para los partidos y el seguro necesario. ¡Lo estamos preparando todo!</p></div>
                     </div>
                     <!-- FAQ Item 3 -->
-                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 300ms;">
+                    <div class="faq-item modern-card scroll-animate" data-delay="300">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
                             <h3 class="font-semibold text-lg text-white">¿Qué necesito llevar a los partidos?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
@@ -365,15 +384,12 @@
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
         // --- Supabase Configuration ---
-        // ATTENTION: These are example keys. Replace with your actual Supabase keys.
         const SUPABASE_URL = 'https://nxthxjarwushdcpwxgmo.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dGh4amFyd3VzaGRjcHd4Z21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzM2NTMsImV4cCI6MjA2NTgwOTY1M30.pI4VcJRNGTDpzZsUHub33WqFL8DidAC1Vl3-4zzySkY';
         let supabase;
         try {
             supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } catch (e) {
-            console.error("Error initializing Supabase", e);
-        }
+        } catch (e) { console.error("Error initializing Supabase", e); }
         
         // --- UI Elements ---
         const registrationForm = document.getElementById('registration-form');
@@ -384,53 +400,74 @@
         const toastMessage = document.getElementById('toast-message');
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-        const faqAccordion = document.getElementById('faq-accordion');
+        const mainHeader = document.getElementById('main-header');
+        const backgroundMesh = document.getElementById('background-mesh');
 
         // --- Event Listeners ---
-        // Toggle mobile menu
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
         });
+        
+        // Parallax background effect
+        window.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+            const xPercent = (clientX / innerWidth - 0.5) * 2;
+            const yPercent = (clientY / innerHeight - 0.5) * 2;
 
-        // Close mobile menu when a link is clicked
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                 if (link.href.includes('#')) {
-                    mobileMenu.classList.add('hidden');
-                }
+            requestAnimationFrame(() => {
+                backgroundMesh.style.setProperty('--x1', `${15 + xPercent * 5}%`);
+                backgroundMesh.style.setProperty('--y1', `${15 + yPercent * 5}%`);
+                backgroundMesh.style.setProperty('--x2', `${85 - xPercent * 5}%`);
+                backgroundMesh.style.setProperty('--y2', `${75 - yPercent * 5}%`);
             });
         });
 
+        // Toggle mobile menu
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.classList.contains('mobile-menu-link') && e.target.href.includes('#')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
         // FAQ Accordion Logic
+        const faqAccordion = document.getElementById('faq-accordion');
         if (faqAccordion) {
             faqAccordion.addEventListener('click', (e) => {
                 const question = e.target.closest('.faq-question');
                 if (question) {
-                    const allItems = faqAccordion.querySelectorAll('.faq-item');
-                    allItems.forEach(item => {
-                        if (item !== question.parentElement && item.classList.contains('open')) {
-                            item.classList.remove('open');
-                        }
-                    });
-                    question.parentElement.classList.toggle('open');
+                    const item = question.parentElement;
+                    const wasOpen = item.classList.contains('open');
+                    
+                    faqAccordion.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                    
+                    if (!wasOpen) {
+                        item.classList.add('open');
+                    }
                 }
             });
         }
 
-        // Handle form submission
-        if(registrationForm && supabase) {
+        // Form submission
+        if (registrationForm && supabase) {
             registrationForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 setLoading(true);
-                const { error } = await supabase
-                    .from('players')
-                    .insert([{ 
-                        player_name: registrationForm['player-name'].value, 
-                        player_email: registrationForm['player-email'].value, 
-                        player_phone: registrationForm['player-phone'].value, 
-                        player_age: registrationForm['player-age'].value
-                    }]);
+                const { error } = await supabase.from('players').insert([{ 
+                    player_name: registrationForm['player-name'].value, 
+                    player_email: registrationForm['player-email'].value, 
+                    player_phone: registrationForm['player-phone'].value, 
+                    player_age: registrationForm['player-age'].value
+                }]);
+                
                 if (error) {
                     console.error('Error inserting data:', error);
                     displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
@@ -440,22 +477,20 @@
                 }
                 setLoading(false);
             });
-        } else if(registrationForm) {
-            registrationForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                displayToast("Error: La base de datos no está conectada.", true);
-            });
         }
 
         // --- Animations on Scroll ---
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    scrollObserver.unobserve(entry.target); 
+                    const delay = parseInt(entry.target.dataset.delay) || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    scrollObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
 
         document.querySelectorAll('.scroll-animate').forEach(el => {
             scrollObserver.observe(el);
@@ -465,13 +500,12 @@
         function setLoading(isLoading) {
             if(!submitButton) return;
             submitButton.disabled = isLoading;
-            if(submitText) submitText.classList.toggle('hidden', isLoading);
-            if(submitSpinner) submitSpinner.classList.toggle('hidden', !isLoading);
-            submitButton.classList.toggle('cursor-not-allowed', isLoading);
+            submitText.classList.toggle('hidden', isLoading);
+            submitSpinner.classList.toggle('hidden', !isLoading);
         }
 
         function displayToast(message, isError = false) {
-            if(!toast || !toastMessage) return;
+            if(!toast) return;
             toastMessage.textContent = message;
             toast.className = `fixed top-5 right-5 text-white py-3 px-6 rounded-lg shadow-2xl transition-all duration-500 z-50 text-base ${isError ? 'bg-red-600' : 'bg-green-500'}`;
             toast.classList.remove('opacity-0', '-translate-y-12');
@@ -482,12 +516,10 @@
             }, 3500);
         }
         
-        // Initial animation for hero
+        // Initial hero animation
         window.addEventListener('load', () => {
             const hero = document.querySelector('.min-h-screen .scroll-animate');
-            if(hero) {
-                setTimeout(() => hero.classList.add('visible'), 100);
-            }
+            if(hero) hero.classList.add('visible');
         });
     </script>
 </body>
