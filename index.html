@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flowtur</title>
 
-    <!-- Favicon -->
+    <!-- Icono de la pestaña del navegador -->
     <link rel="icon" type="image/png" href="flowturicon.png">
     
-    <!-- Tailwind CSS -->
+    <!-- Carga de la librería Tailwind para estilos rápidos -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Poppins -->
+    <!-- Importación de la fuente Poppins desde Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- Carga de Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Carga de Animate.css para las animaciones (opcional, si se usa en otras partes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
-    
+        /* --- ESTILOS GENERALES DE LA PÁGINA --- */
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -29,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Fondo de Malla de Gradiente con Parallax --- */
+        /* --- EFECTO DE FONDO CON GRADIENTE Y PARALLAX --- */
         #background-mesh {
             content: '';
             position: fixed;
@@ -47,7 +50,7 @@
         }
         @keyframes fadeInBackground { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- Estilos de Tipografía --- */
+        /* --- ESTILOS DE TIPOGRAFÍA Y GRADIENTES --- */
         .text-gradient {
             background-image: linear-gradient(45deg, #22d3ee, #ec4899);
             -webkit-background-clip: text;
@@ -57,7 +60,7 @@
         }
         h2 { font-weight: 700; font-size: 2.5rem; line-height: 1.2; }
 
-        /* --- Botones Modernos y Dinámicos --- */
+        /* --- ESTILOS PARA LOS BOTONES --- */
         .btn {
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
@@ -92,7 +95,7 @@
             box-shadow: 0 4px 20px rgba(34, 211, 238, 0.1);
         }
 
-        /* --- Tarjetas Minimalistas con Efecto de Brillo --- */
+        /* --- TARJETAS CON EFECTO DE PROFUNDIDAD --- */
         .modern-card {
             background: rgba(16, 16, 16, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -116,7 +119,7 @@
             transform: scale(1.1) rotate(-5deg);
         }
         
-        /* --- Header --- */
+        /* --- BARRA DE NAVEGACIÓN (HEADER) --- */
         header {
             background-color: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(12px);
@@ -128,7 +131,7 @@
             background-color: rgba(10, 10, 10, 0.8);
         }
 
-        /* --- Formulario --- */
+        /* --- ESTILOS PARA FORMULARIOS --- */
         .form-input {
             background-color: #1a1a1a; border: 1px solid #333; color: white;
             border-radius: 0.5rem; padding: 0.75rem 1rem; transition: all 0.3s ease;
@@ -138,7 +141,7 @@
             box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
         }
         
-        /* --- Acordeón FAQ --- */
+        /* --- ACORDEÓN PARA PREGUNTAS FRECUENTES (FAQ) --- */
         .faq-answer {
             max-height: 0; overflow: hidden;
             transition: max-height 0.5s ease-in-out, padding 0.5s ease, opacity 0.5s ease;
@@ -148,7 +151,7 @@
         .faq-item.open .faq-chevron { transform: rotate(180deg); }
         .faq-chevron { transition: transform 0.4s ease; }
         
-        /* --- Animaciones al scroll --- */
+        /* --- ANIMACIONES DE ENTRADA AL HACER SCROLL --- */
         .scroll-animate {
             opacity: 0;
             transform: translateY(40px);
@@ -156,7 +159,7 @@
         }
         .scroll-animate.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- Estilo de mapa oscuro --- */
+        /* --- MAPA DE GOOGLE CON ESTILO OSCURO --- */
         .map-dark {
             filter: invert(1) hue-rotate(180deg);
         }
@@ -165,7 +168,7 @@
 <body class="antialiased">
     <div id="background-mesh"></div>
 
-    <!-- Header -->
+    <!-- Barra de navegación fija en la parte superior -->
     <header id="main-header" class="fixed w-full z-20 top-0 left-0">
         <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
@@ -176,9 +179,8 @@
                 <span class="text-2xl font-bold text-white">FLOWTUR</span>
             </a>
             
-            <!-- Desktop Menu -->
+            <!-- Menú para pantallas grandes -->
             <div class="hidden lg:flex items-center space-x-1">
-                <a href="#history" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Historia</a>
                 <a href="fiestas.html" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Fiestas</a>
                 <a href="#tournament" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">El Torneo</a>
                 <a href="#rules" class="px-3 py-2 text-slate-300 hover:text-white transition-colors duration-300 rounded-md">Reglas</a>
@@ -187,7 +189,7 @@
                 <a href="#register" class="btn btn-primary ml-4">Inscribirse</a>
             </div>
             
-            <!-- Mobile Menu Button -->
+            <!-- Botón para el menú en móviles -->
             <div class="lg:hidden">
                 <button id="menu-btn" class="text-white focus:outline-none p-2" aria-label="Abrir menú">
                     <i class="fas fa-bars text-2xl"></i>
@@ -195,10 +197,9 @@
             </div>
         </nav>
         
-        <!-- Mobile Menu -->
+        <!-- Menú desplegable para móviles -->
         <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-lg">
             <div class="flex flex-col items-center p-4 space-y-2">
-                <a href="#history" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Historia</a>
                 <a href="fiestas.html" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Fiestas</a>
                 <a href="#tournament" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">El Torneo</a>
                 <a href="#rules" class="mobile-menu-link block py-2 px-4 text-lg text-slate-300 hover:text-white w-full text-center">Reglas</a>
@@ -209,9 +210,9 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Contenido principal -->
     <main class="relative z-10">
-        <!-- Hero Section -->
+        <!-- Sección de bienvenida (Hero) -->
         <section class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
             <div class="max-w-4xl mx-auto scroll-animate">
                 <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase">
@@ -224,9 +225,6 @@
                     <a href="#register" class="btn btn-primary text-lg">
                         Apúntate al Torneo <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
-                    <a href="#history" class="btn btn-secondary text-lg">
-                        Nuestra Historia
-                    </a>
                     <a href="fiestas.html" class="btn btn-secondary text-lg">
                         Ver Fiestas Pasadas
                     </a>
@@ -234,24 +232,7 @@
             </div>
         </section>
 
-        <!-- History Section -->
-        <section id="history" class="py-20 sm:py-32">
-            <div class="container mx-auto px-4 sm:px-6">
-                <div class="max-w-4xl mx-auto text-center scroll-animate">
-                    <h2 class="text-center mb-4">Nuestra <span class="text-gradient">Historia</span></h2>
-                    <p class="text-lg text-slate-400 mb-10">
-                        De una idea entre amigos a crear eventos inolvidables.
-                    </p>
-                    <div class="modern-card text-left">
-                        <p class="text-base sm:text-lg leading-relaxed text-slate-300">
-                           Flowtur Fiestas nació de la pasión por juntar a la gente, crear buen ambiente y disfrutar de la música. Empezamos poco a poco, sin tener nada, pero poco a poco nos hemos ido ganando terreno aquí, ofreciendo uno de los mejores ambientes en Valladolid, y pronto, en otros lados de España...; Simplemente somos un grupo de chavales con pasión por nuestro trabajo, nos gusta lo que hacemos, y lo hacemos bien, esto es FLOWTUR, un sentimiento.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tournament Section -->
+        <!-- Sección sobre el Torneo -->
         <section id="tournament" class="py-20 sm:py-32  bg-black/20">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center scroll-animate">
@@ -268,22 +249,22 @@
             </div>
         </section>
         
-        <!-- Rules Section -->
+        <!-- Sección del Reglamento -->
         <section id="rules" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">El <span class="text-gradient">Reglamento</span></h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="modern-card text-center scroll-animate" data-delay="100"><i class="fas fa-users text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por nosotros para máxima igualdad.</p></div>
-                    <div class="modern-card text-center scroll-animate" data-delay="200"><i class="fas fa-clock text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Dos partes de 20 minutos con 5 de descanso. Intensidad pura.</p></div>
-                    <div class="modern-card text-center scroll-animate" data-delay="300"><i class="fas fa-handshake text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es ley. Malos rollos y conductas antideportivas, fuera.</p></div>
-                    <div class="modern-card text-center scroll-animate" data-delay="400"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y al vuelo para que el ritmo no pare.</p></div>
-                    <div class="modern-card text-center scroll-animate" data-delay="500"><i class="fas fa-shirt text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Uso de botas adecuadas obligatorio. Nosotros ponemos los petos.</p></div>
-                    <div class="modern-card text-center scroll-animate" data-delay="600"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡Que gane el mejor!</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 100ms;"><i class="fas fa-users text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Formato</h3><p class="text-slate-400">Fútbol 7 (6 + portero). Equipos creados por nosotros para máxima igualdad.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 200ms;"><i class="fas fa-clock text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Duración</h3><p class="text-slate-400">Dos partes de 20 minutos con 5 de descanso. Intensidad pura.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 300ms;"><i class="fas fa-handshake text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Fair Play</h3><p class="text-slate-400">El respeto es ley. Malos rollos y conductas antideportivas, fuera.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 400ms;"><i class="fas fa-right-left text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Sustituciones</h3><p class="text-slate-400">Cambios ilimitados y al vuelo para que el ritmo no pare.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 500ms;"><i class="fas fa-shirt text-4xl text-pink-500 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Equipamiento</h3><p class="text-slate-400">Uso de botas adecuadas obligatorio. Nosotros ponemos los petos.</p></div>
+                    <div class="modern-card text-center scroll-animate" style="transition-delay: 600ms;"><i class="fas fa-trophy text-4xl text-cyan-400 mb-4 fa-icon"></i><h3 class="text-xl font-bold mb-2 text-white">Puntuación</h3><p class="text-slate-400">Victoria: 3 pts, Empate: 1 pt, Derrota: 0 pts. ¡Que gane el mejor!</p></div>
                 </div>
             </div>
         </section>
         
-        <!-- Registration Section -->
+        <!-- Sección de Inscripción -->
         <section id="register" class="py-20 sm:py-32  bg-black/20">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-2xl mx-auto text-center scroll-animate">
@@ -299,11 +280,12 @@
                         
                         <div><button type="submit" id="submit-button" class="w-full btn btn-primary text-lg mt-4"><span id="submit-text">Enviar Inscripción</span><i id="submit-spinner" class="fas fa-spinner fa-spin hidden ml-2"></i></button></div>
                     </form>
+                    <p class="text-xs text-slate-500 mt-4 text-center">*Al inscribirte aceptas los términos y condiciones.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Location Section -->
+        <!-- Sección de Ubicación con mapa -->
         <section id="location" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="max-w-4xl mx-auto text-center scroll-animate">
@@ -325,29 +307,29 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
+        <!-- Sección de Preguntas Frecuentes (FAQ) -->
         <section id="faq" class="py-20 sm:py-32 bg-black/20">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">Preguntas <span class="text-gradient">Clave</span></h2>
                 <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
-                    <!-- FAQ Item 1 -->
-                    <div class="faq-item modern-card scroll-animate" data-delay="100">
+                    <!-- Pregunta 1 -->
+                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 100ms;">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
                             <h3 class="font-semibold text-lg text-white">¿Tengo que venir con un equipo?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
                         </div>
                         <div class="faq-answer text-slate-400"><p class="pt-4">¡Para nada! Vienes tú, y nosotros ponemos la magia. Nos encargamos de crear los equipos para que haya máxima igualdad y competitividad. Tú solo trae las ganas de jugar.</p></div>
                     </div>
-                    <!-- FAQ Item 2 -->
-                    <div class="faq-item modern-card scroll-animate" data-delay="200">
+                    <!-- Pregunta 2 -->
+                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 200ms;">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
                             <h3 class="font-semibold text-lg text-white">¿Cuánto cuesta la inscripción?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
                         </div>
                         <div class="faq-answer text-slate-400"><p class="pt-4">Anunciaremos el precio junto a las fechas oficiales. Ten por seguro que incluirá tu participación, agua para los partidos y el seguro necesario. ¡Lo estamos preparando todo!</p></div>
                     </div>
-                    <!-- FAQ Item 3 -->
-                    <div class="faq-item modern-card scroll-animate" data-delay="300">
+                    <!-- Pregunta 3 -->
+                    <div class="faq-item modern-card scroll-animate" style="transition-delay: 300ms;">
                         <div class="faq-question flex justify-between items-center cursor-pointer p-0">
                             <h3 class="font-semibold text-lg text-white">¿Qué necesito llevar a los partidos?</h3>
                             <i class="fas fa-chevron-down faq-chevron text-cyan-400"></i>
@@ -359,7 +341,7 @@
         </section>
     </main>
     
-    <!-- Footer -->
+    <!-- Pie de página con enlaces e información -->
     <footer class="py-12 mt-20 border-t border-white/10">
         <div class="container mx-auto px-4 sm:px-6 text-center text-slate-400">
              <div class="flex justify-center space-x-6 mb-6">
@@ -369,27 +351,32 @@
              </div>
              <p class="text-sm">Desarrollada por Mario Rodríguez en Valladolid.</p>
              <p class="text-xs mt-2 text-slate-500">&copy; 2025 FLOWTUR. Todos los derechos reservados.</p>
+             <div class="mt-4 space-x-4">
+                <a href="terminos.html" class="text-xs text-slate-400 hover:text-slate-200 transition-colors">Terminos y condiciones</a>
+                <a href="legal.html" class="text-xs text-slate-400 hover:text-slate-200 transition-colors">Apartado Legal</a>
+             </div>
         </div>
     </footer>
     
-    <!-- Notification Toast -->
+    <!-- Contenedor para notificaciones (toast) -->
     <div id="toast" class="fixed top-5 right-5 text-white py-2 px-5 rounded-lg shadow-lg opacity-0 transform -translate-y-12 transition-all duration-500 z-50">
         <p id="toast-message">Mensaje de notificación</p>
     </div>
     
-    <!-- App Logic -->
+    <!-- Lógica de la página con JavaScript -->
     <script type="module">
+        // Importación del cliente de Supabase para la base de datos
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-        // --- Supabase Configuration ---
+        // --- Configuración de Supabase ---
         const SUPABASE_URL = 'https://nxthxjarwushdcpwxgmo.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54dGh4amFyd3VzaGRjcHd4Z21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzM2NTMsImV4cCI6MjA2NTgwOTY1M30.pI4VcJRNGTDpzZsUHub33WqFL8DidAC1Vl3-4zzySkY';
         let supabase;
         try {
             supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } catch (e) { console.error("Error initializing Supabase", e); }
+        } catch (e) { console.error("Error al inicializar Supabase:", e); }
         
-        // --- UI Elements ---
+        // --- Referencias a elementos del DOM ---
         const registrationForm = document.getElementById('registration-form');
         const submitButton = document.getElementById('submit-button');
         const submitText = document.getElementById('submit-text');
@@ -401,8 +388,9 @@
         const mainHeader = document.getElementById('main-header');
         const backgroundMesh = document.getElementById('background-mesh');
 
-        // --- Event Listeners ---
-        // Header scroll effect
+        // --- Asignación de Eventos ---
+        
+        // Efecto de cambio de color en el header al hacer scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 mainHeader.classList.add('scrolled');
@@ -411,7 +399,7 @@
             }
         });
         
-        // Parallax background effect
+        // Efecto de parallax en el fondo que sigue al ratón
         window.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
             const { innerWidth, innerHeight } = window;
@@ -426,17 +414,17 @@
             });
         });
 
-        // Toggle mobile menu
+        // Funcionalidad para abrir/cerrar el menú en móviles
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        // Close mobile menu when a link is clicked
+        // Cierra el menú móvil al hacer clic en un enlace
         mobileMenu.addEventListener('click', (e) => {
             if (e.target.classList.contains('mobile-menu-link') && e.target.href.includes('#')) {
                 mobileMenu.classList.add('hidden');
             }
         });
 
-        // FAQ Accordion Logic
+        // Lógica del acordeón para las preguntas frecuentes (FAQ)
         const faqAccordion = document.getElementById('faq-accordion');
         if (faqAccordion) {
             faqAccordion.addEventListener('click', (e) => {
@@ -445,6 +433,7 @@
                     const item = question.parentElement;
                     const wasOpen = item.classList.contains('open');
                     
+                    // Cierra todos los items antes de abrir el seleccionado
                     faqAccordion.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
                     
                     if (!wasOpen) {
@@ -454,12 +443,12 @@
             });
         }
 
-        // Form submission
+        // Gestión del envío del formulario de inscripción
         if (registrationForm && supabase) {
             registrationForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 setLoading(true);
-                const { error } = await supabase.from('players').insert([{ 
+                const { data, error } = await supabase.from('players').insert([{ 
                     player_name: registrationForm['player-name'].value, 
                     player_email: registrationForm['player-email'].value, 
                     player_phone: registrationForm['player-phone'].value, 
@@ -467,7 +456,7 @@
                 }]);
                 
                 if (error) {
-                    console.error('Error inserting data:', error);
+                    console.error('Error al insertar los datos:', error);
                     displayToast('Error al realizar la inscripción. Inténtalo de nuevo.', true);
                 } else {
                     displayToast('¡Inscripción realizada con éxito!');
@@ -477,7 +466,9 @@
             });
         }
 
-        // --- Animations on Scroll ---
+        // --- Lógica de Animaciones ---
+        
+        // Observador para activar animaciones al hacer scroll
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -493,8 +484,19 @@
         document.querySelectorAll('.scroll-animate').forEach(el => {
             scrollObserver.observe(el);
         });
+        
+        // Animar la sección Hero al cargar la página
+        window.addEventListener('load', () => {
+            const heroSection = document.querySelector('.min-h-screen .scroll-animate');
+            if (heroSection) {
+                heroSection.classList.add('visible');
+            }
+        });
 
-        // --- Functions ---
+
+        // --- Funciones Auxiliares ---
+        
+        // Muestra u oculta el spinner del botón de envío
         function setLoading(isLoading) {
             if(!submitButton) return;
             submitButton.disabled = isLoading;
@@ -502,6 +504,7 @@
             submitSpinner.classList.toggle('hidden', !isLoading);
         }
 
+        // Muestra una notificación (toast)
         function displayToast(message, isError = false) {
             if(!toast) return;
             toastMessage.textContent = message;
@@ -513,12 +516,6 @@
                 toast.classList.add('opacity-0', '-translate-y-12');
             }, 3500);
         }
-        
-        // Initial hero animation
-        window.addEventListener('load', () => {
-            const hero = document.querySelector('.min-h-screen .scroll-animate');
-            if(hero) hero.classList.add('visible');
-        });
     </script>
 </body>
 </html>
