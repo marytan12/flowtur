@@ -499,8 +499,11 @@
             const closePartyPopup = () => {
                 partyPopup.classList.remove('visible');
                 document.body.classList.remove('modal-open');
-                setTimeout(() => partyPopup.classList.add('hidden'), 300);
+                setTimeout(() => {
+                    partyPopup.classList.add('hidden');
+                }, 300);
                 localStorage.setItem('popupShown', 'true');
+                window.scrollTo(0, 0); // Forzar el scroll al inicio de la página
             }
 
             // Asignación de eventos a los elementos interactivos
