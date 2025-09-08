@@ -502,7 +502,6 @@
                 setTimeout(() => {
                     partyPopup.classList.add('hidden');
                 }, 300);
-                localStorage.setItem('popupShown', 'true');
                 window.scrollTo(0, 0); // Forzar el scroll al inicio de la página
             }
 
@@ -530,10 +529,9 @@
             popupCloseBtn.addEventListener('click', closePartyPopup);
             partyPopup.querySelector('.modal-overlay').addEventListener('click', closePartyPopup);
 
-            // Mostrar el PopUp si no se ha mostrado antes
-            if (!localStorage.getItem('popupShown')) {
-                setTimeout(openPartyPopup, 1000); // Pequeño retraso para que no sea tan brusco
-            }
+            // Mostrar el PopUp siempre al cargar
+            setTimeout(openPartyPopup, 1000); // Pequeño retraso para que no sea tan brusco
+            
         });
     </script>
 </body>
