@@ -90,17 +90,18 @@
             background-clip: text; text-fill-color: transparent;
         }
         h2 { 
-            font-weight: 800; /* Letra más gruesa */
-            font-size: 3.25rem; /* Tamaño base más grande */
+            font-weight: 900; /* Letra más gruesa */
+            font-size: 4.25rem; /* Tamaño base más grande */
             line-height: 1.1; 
-            letter-spacing: -0.05em; /* Letras más juntas para efecto de título */
+            letter-spacing: -0.06em; /* Letras más juntas para efecto de título */
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.25), 0 0 30px rgba(236, 72, 153, 0.25);
         }
         @media (min-width: 640px) { /* En pantallas más grandes... */
             h2 {
-                font-size: 4.5rem; /* ...el título es aún más grande */
+                font-size: 6rem; /* ...el título es aún más grande */
             }
         }
-        h3 { font-weight: 600; font-size: 1.5rem; line-height: 1.3; }
+        h3 { font-weight: 700; font-size: 1.75rem; line-height: 1.3; }
 
         /* Estilos para los botones */
         .btn {
@@ -231,7 +232,7 @@
                             </div>
                             <!-- Columna de la información -->
                             <div class="md:w-1/2 mt-6 md:mt-0 flex flex-col justify-center">
-                                <h3 class="font-bold text-white text-center md:text-left text-3xl">Flowtur Pucela Fest</h3>
+                                <h3 class="font-bold tracking-tight text-white text-center md:text-left text-4xl sm:text-5xl">Flowtur <span class="text-gradient">Pucela Fest</span></h3>
                                 <div class="text-left space-y-3 text-slate-300 my-6">
                                     <p class="info-item" style="animation-delay: 200ms;"><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i><b>Fecha:</b> El 13 de septiembre</p>
                                     <p class="info-item" style="animation-delay: 300ms;"><i class="fas fa-clock fa-fw mr-2 text-cyan-400"></i><b>Hora:</b> A partir de las 22:00h</p>
@@ -261,14 +262,16 @@
                     <!-- Tarjeta para la fiesta en Black Pearl -->
                     <div class="modern-card scroll-animate p-4 md:p-6" style="transition-delay: 100ms;">
                         <div class="flex justify-between items-start">
-                            <h3 class="font-bold mb-2 text-white text-center flex-grow">Flowtur en <span class="text-gradient">Black Pearl</span></h3>
+                            <h3 class="font-bold mb-4 text-white text-center flex-grow text-3xl sm:text-4xl tracking-tight">Flowtur en <span class="text-gradient">Black Pearl</span></h3>
                             <button class="info-btn text-cyan-400 hover:text-cyan-300 transition-colors"
                                 data-context="Primera fiesta. BlackPearl. Una noche legendaria que puso a Flowtur en el mapa de Valladolid. El local se llenó, consiguiendo Sold Out y la energía fue simplemente increíble. Aquí empezó todo, aquí empezo Flowtur.">
                                 <i class="fas fa-info-circle text-xl"></i>
                             </button>
                         </div>
-                        <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>19 de Abril de 2025</p>
-                        <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Black Pearl, Valladolid</p>
+                        <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-slate-400 mb-4 text-sm">
+                            <span><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i>19 de Abril de 2025</span>
+                            <span><i class="fas fa-map-marker-alt fa-fw mr-2 text-pink-500"></i>Black Pearl, Valladolid</span>
+                        </div>
                         <div class="max-w-xs mx-auto">
                             <div id="carousel-black-pearl" class="relative overflow-hidden rounded-lg bg-black/20 mt-4 shadow-lg">
                                 <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
@@ -288,14 +291,16 @@
                     <!-- Tarjeta para la fiesta en Cocoon Club -->
                     <div class="modern-card scroll-animate p-4 md:p-6" style="transition-delay: 200ms;">
                          <div class="flex justify-between items-start">
-                            <h3 class="font-bold mb-2 text-white text-center flex-grow">Flowtur en <span class="text-gradient">Coocon Club</span></h3>
+                            <h3 class="font-bold mb-4 text-white text-center flex-grow text-3xl sm:text-4xl tracking-tight">Flowtur en <span class="text-gradient">Coocon Club</span></h3>
                             <button class="info-btn text-cyan-400 hover:text-cyan-300 transition-colors"
                                 data-context="La segunda cita fue en Cocoon Club, donde hicimos nuestro FUCK EXAMS, para celebrar el final de la PAU 2025, ahi estabamos sirviendo cubatas para los que iban a aprobar y para los que no ;)">
                                 <i class="fas fa-info-circle text-xl"></i>
                             </button>
                         </div>
-                        <p class="text-slate-400 mb-1 text-center text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 opacity-70"></i>05 de Junio de 2025</p>
-                        <p class="text-slate-400 mb-4 text-center text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 opacity-70"></i>Coocon Club, Valladolid</p>
+                        <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-slate-400 mb-4 text-sm">
+                            <span><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i>05 de Junio de 2025</span>
+                            <span><i class="fas fa-map-marker-alt fa-fw mr-2 text-pink-500"></i>Coocon Club, Valladolid</span>
+                        </div>
                         <div class="max-w-xs mx-auto">
                             <div id="carousel-cocoon" class="relative overflow-hidden rounded-lg bg-black/20 mt-4 shadow-lg">
                                 <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
