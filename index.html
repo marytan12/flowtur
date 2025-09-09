@@ -49,6 +49,23 @@
             overflow: hidden; /* Evita el scroll del body cuando se abre un modal */
         }
 
+        /* Estilos para la barra de scroll personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(16, 16, 16, 0.7);
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #22d3ee;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #ec4899;
+        }
+
         /* Fondo con gradiente radial para un efecto visual */
         body::before {
             content: '';
@@ -370,25 +387,31 @@
     <!-- PopUp para la nueva fiesta (MODIFICADO) -->
     <div id="party-popup" class="modal-container fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
         <div class="modal-overlay absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0"></div>
-        <div class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-sm p-4 text-center transform scale-95 opacity-0 overflow-y-auto max-h-[95vh]">
-            <!-- Botón de cerrar en la esquina superior derecha -->
-            <button id="popup-close-btn-top" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors z-10 p-1">
+        <!-- Contenido del modal rediseñado para ser más cuadrado y compacto -->
+        <div class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-md p-0 text-center transform scale-95 opacity-0 overflow-hidden">
+            <button id="popup-close-btn-top" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors z-20 p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <h3 class="text-2xl font-bold mb-2 text-gradient">¡Nueva Fiesta!</h3>
-            <h4 class="text-xl font-semibold text-white mb-2">Flowtur Pucela Fest</h4>
-            <img src="cartel13.png" alt="Cartel de la fiesta Flowtur Pucela Fest" class="w-full rounded-lg my-3" onerror="this.onerror=null; this.src='https://placehold.co/400x400/0A0A0A/FFFFFF?text=Cartel13.png';" loading="lazy" decoding="async">
-            <div class="text-left space-y-2 text-slate-300 mb-4">
-                <p class="text-sm"><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i><b>Fecha:</b> El 13 de septiembre</p>
-                <p class="text-sm"><i class="fas fa-clock fa-fw mr-2 text-cyan-400"></i><b>Hora:</b> A partir de las 22:00h</p>
-                <p class="text-sm"><i class="fas fa-map-marker-alt fa-fw mr-2 text-cyan-400"></i><b>Lugar:</b> C/ Rastrojo 7</p>
-                <p class="text-sm"><i class="fas fa-music fa-fw mr-2 text-cyan-400"></i><b>DJs:</b> DJ ZULU, DJ JUAN BURGOS y DJ ORIGIN</p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3 mt-4">
-                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Flowtur%20Pucela%20Fest&dates=20250913T220000/20250914T020000&details=%C2%A1No%20te%20pierdas%20el%20Flowtur%20Pucela%20Fest%20con%20DJ%20ZULU%2C%20DJ%20JUAN%20BURGOS%20y%20DJ%20ORIGIN!&location=C%2F%20Rastrojo%207%2C%20Valladolid" target="_blank" rel="noopener noreferrer" class="btn text-white bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400 w-full sm:w-auto text-sm">
-                    <i class="fas fa-calendar-plus mr-2"></i>Añadir al Calendario
-                </a>
-                <button id="popup-close-btn" class="btn btn-secondary w-full sm:w-auto text-sm">Cerrar</button>
+            <div class="sm:flex">
+                <div class="sm:w-1/2">
+                    <img src="cartel13.png" alt="Cartel de la fiesta Flowtur Pucela Fest" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x600/0A0A0A/FFFFFF?text=Cartel13.png';" loading="lazy" decoding="async">
+                </div>
+                <div class="sm:w-1/2 p-6 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-1 text-gradient">¡Nueva Fiesta!</h3>
+                    <h4 class="text-xl font-semibold text-white mb-4">Flowtur Pucela Fest</h4>
+                    <div class="text-left space-y-2 text-slate-300 mb-6">
+                        <p class="text-sm flex items-center"><i class="fas fa-calendar-alt fa-fw w-5 mr-2 text-cyan-400"></i><span><b>Fecha:</b> 13 de septiembre</span></p>
+                        <p class="text-sm flex items-center"><i class="fas fa-clock fa-fw w-5 mr-2 text-cyan-400"></i><span><b>Hora:</b> Desde las 22:00h</span></p>
+                        <p class="text-sm flex items-center"><i class="fas fa-map-marker-alt fa-fw w-5 mr-2 text-cyan-400"></i><span><b>Lugar:</b> C/ Rastrojo 7</span></p>
+                        <p class="text-sm flex items-center"><i class="fas fa-music fa-fw w-5 mr-2 text-cyan-400"></i><span><b>DJs:</b> ZULU, J. BURGOS...</span></p>
+                    </div>
+                    <div class="flex flex-col gap-3 mt-auto">
+                        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Flowtur%20Pucela%20Fest&dates=20250913T220000/20250914T020000&details=%C2%A1No%20te%20pierdas%20el%20Flowtur%20Pucela%20Fest%20con%20DJ%20ZULU%2C%20DJ%20JUAN%20BURGOS%20y%20DJ%20ORIGIN!&location=C%2F%20Rastrojo%207%2C%20Valladolid" target="_blank" rel="noopener noreferrer" class="btn text-white bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400 w-full text-sm">
+                            <i class="fas fa-calendar-plus mr-2"></i>Añadir al Calendario
+                        </a>
+                        <button id="popup-close-btn" class="btn btn-secondary w-full text-sm">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -578,3 +601,4 @@
     </script>
 </body>
 </html>
+
