@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flowtur</title>
 
 <meta name="title" content="Flowtur" />
@@ -221,23 +221,32 @@
         <section id="next-party" class="py-20 sm:py-32">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-center mb-12 scroll-animate">Nuestra <span class="text-gradient">Próxima Fiesta</span></h2>
-                <div class="max-w-md mx-auto">
-                    <div class="modern-card scroll-animate p-4 md:p-6">
-                        <h3 class="font-bold mb-4 text-white text-center text-2xl">Flowtur Pucela Fest</h3>
-                        <img src="cartel13.png" alt="Cartel de la fiesta Flowtur Pucela Fest" class="w-full rounded-lg my-4 shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/400x600/0A0A0A/FFFFFF?text=Cartel13.png';" loading="lazy" decoding="async">
-                        <div class="text-left space-y-2 text-slate-300 mb-6">
-                            <p class="info-item" style="animation-delay: 200ms;"><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i><b>Fecha:</b> El 13 de septiembre</p>
-                            <p class="info-item" style="animation-delay: 300ms;"><i class="fas fa-clock fa-fw mr-2 text-cyan-400"></i><b>Hora:</b> A partir de las 22:00h</p>
-                            <p class="info-item" style="animation-delay: 400ms;"><i class="fas fa-map-marker-alt fa-fw mr-2 text-cyan-400"></i><b>Lugar:</b> C/ Rastrojo 7, Valladolid</p>
-                            <p class="info-item" style="animation-delay: 500ms;"><i class="fas fa-music fa-fw mr-2 text-cyan-400"></i><b>DJs:</b> DJ ZULU, DJ JUAN BURGOS y DJ ORIGIN</p>
-                        </div>
-                        <div class="text-center mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="https://www.instagram.com/flowturr" target="_blank" rel="noopener noreferrer" class="btn text-white bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400">
-                                <i class="fab fa-instagram mr-2"></i>Infórmate
-                            </a>
-                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Flowtur%20Pucela%20Fest&dates=20250913T220000/20250914T020000&details=%C2%A1No%20te%20pierdas%20el%20Flowtur%20Pucela%20Fest%20con%20DJ%20ZULU%2C%20DJ%20JUAN%20BURGOS%20y%20DJ%20ORIGIN!&location=C%2F%20Rastrojo%207%2C%20Valladolid" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                                <i class="fas fa-calendar-plus mr-2"></i>Añadir al Calendario
-                            </a>
+                <!-- Contenedor principal de la tarjeta horizontal -->
+                <div class="max-w-5xl mx-auto">
+                    <div class="modern-card scroll-animate p-6 md:p-8">
+                        <div class="md:flex md:gap-8 items-center">
+                            <!-- Columna de la imagen -->
+                            <div class="md:w-1/2">
+                                <img src="cartel13.png" alt="Cartel de la fiesta Flowtur Pucela Fest" class="w-full rounded-lg shadow-lg aspect-[18/10] object-cover" onerror="this.onerror=null; this.src='https://placehold.co/1800x1000/0A0A0A/FFFFFF?text=Cartel13.png';" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Columna de la información -->
+                            <div class="md:w-1/2 mt-6 md:mt-0 flex flex-col justify-center">
+                                <h3 class="font-bold text-white text-center md:text-left text-3xl">Flowtur Pucela Fest</h3>
+                                <div class="text-left space-y-3 text-slate-300 my-6">
+                                    <p class="info-item" style="animation-delay: 200ms;"><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i><b>Fecha:</b> El 13 de septiembre</p>
+                                    <p class="info-item" style="animation-delay: 300ms;"><i class="fas fa-clock fa-fw mr-2 text-cyan-400"></i><b>Hora:</b> A partir de las 22:00h</p>
+                                    <p class="info-item" style="animation-delay: 400ms;"><i class="fas fa-map-marker-alt fa-fw mr-2 text-cyan-400"></i><b>Lugar:</b> C/ Rastrojo 7, Valladolid</p>
+                                    <p class="info-item" style="animation-delay: 500ms;"><i class="fas fa-music fa-fw mr-2 text-cyan-400"></i><b>DJs:</b> DJ ZULU, DJ JUAN BURGOS y DJ ORIGIN</p>
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                                    <a href="https://www.instagram.com/flowturr" target="_blank" rel="noopener noreferrer" class="btn text-white bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400">
+                                        <i class="fab fa-instagram mr-2"></i>Infórmate
+                                    </a>
+                                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Flowtur%20Pucela%20Fest&dates=20250913T220000/20250914T020000&details=%C2%A1No%20te%20pierdas%20el%20Flowtur%20Pucela%20Fest%20con%20DJ%20ZULU%2C%20DJ%20JUAN%20BURGOS%20y%20DJ%20ORIGIN!&location=C%2F%20Rastrojo%207%2C%20Valladolid" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                                        <i class="fas fa-calendar-plus mr-2"></i>Añadir al Calendario
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -393,25 +402,34 @@
     <!-- PopUp para la nueva fiesta (MODIFICADO) -->
     <div id="party-popup" class="modal-container fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
         <div class="modal-overlay absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0"></div>
-        <div class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-sm p-5 text-center transform scale-95 opacity-0 overflow-y-auto max-h-[90vh]">
+        <div class="modal-content relative bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl w-full max-w-4xl p-6 text-center transform scale-95 opacity-0 overflow-y-auto max-h-[90vh]">
             <!-- Botón de cerrar en la esquina superior derecha -->
             <button id="popup-close-btn-top" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors z-10 p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <h3 class="text-2xl sm:text-3xl font-bold mb-2 text-gradient">¡Nueva Fiesta!</h3>
-            <h4 class="text-xl sm:text-2xl font-semibold text-white mb-3">Flowtur Pucela Fest</h4>
-            <img src="cartel13.png" alt="Cartel de la fiesta Flowtur Pucela Fest" class="w-full rounded-lg my-4 shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/400x400/0A0A0A/FFFFFF?text=Cartel13.png';" loading="lazy" decoding="async">
-            <div class="text-left space-y-3 text-slate-300 mb-5">
-                <p class="text-base"><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i><b>Fecha:</b> El 13 de septiembre</p>
-                <p class="text-base"><i class="fas fa-clock fa-fw mr-2 text-cyan-400"></i><b>Hora:</b> A partir de las 22:00h</p>
-                <p class="text-base"><i class="fas fa-map-marker-alt fa-fw mr-2 text-cyan-400"></i><b>Lugar:</b> C/ Rastrojo 7</p>
-                <p class="text-base"><i class="fas fa-music fa-fw mr-2 text-cyan-400"></i><b>DJs:</b> DJ ZULU, DJ JUAN BURGOS y DJ ORIGIN</p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3 mt-5">
-                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Flowtur%20Pucela%20Fest&dates=20250913T220000/20250914T020000&details=%C2%A1No%20te%20pierdas%20el%20Flowtur%20Pucela%20Fest%20con%20DJ%20ZULU%2C%20DJ%20JUAN%20BURGOS%20y%20DJ%20ORIGIN!&location=C%2F%20Rastrojo%207%2C%20Valladolid" target="_blank" rel="noopener noreferrer" class="btn text-white bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400 w-full">
-                    <i class="fas fa-calendar-plus mr-2"></i>Añadir al Calendario
-                </a>
-                <button id="popup-close-btn" class="btn btn-secondary w-full">Cerrar</button>
+            <h4 class="text-xl sm:text-2xl font-semibold text-white mb-4">Flowtur Pucela Fest</h4>
+            
+            <div class="sm:flex sm:gap-6 items-center">
+                <!-- Columna de la imagen -->
+                <div class="sm:w-1/2">
+                    <img src="cartel13.png" alt="Cartel de la fiesta Flowtur Pucela Fest" class="w-full rounded-lg shadow-lg aspect-[18/10] object-cover" onerror="this.onerror=null; this.src='https://placehold.co/1800x1000/0A0A0A/FFFFFF?text=Cartel13.png';" loading="lazy" decoding="async">
+                </div>
+                <!-- Columna de información -->
+                <div class="sm:w-1/2 mt-5 sm:mt-0">
+                    <div class="text-left space-y-3 text-slate-300 mb-5">
+                        <p class="text-base"><i class="fas fa-calendar-alt fa-fw mr-2 text-cyan-400"></i><b>Fecha:</b> El 13 de septiembre</p>
+                        <p class="text-base"><i class="fas fa-clock fa-fw mr-2 text-cyan-400"></i><b>Hora:</b> A partir de las 22:00h</p>
+                        <p class="text-base"><i class="fas fa-map-marker-alt fa-fw mr-2 text-cyan-400"></i><b>Lugar:</b> C/ Rastrojo 7</p>
+                        <p class="text-base"><i class="fas fa-music fa-fw mr-2 text-cyan-400"></i><b>DJs:</b> DJ ZULU, DJ JUAN BURGOS y DJ ORIGIN</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 mt-5">
+                        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Flowtur%20Pucela%20Fest&dates=20250913T220000/20250914T020000&details=%C2%A1No%20te%20pierdas%20el%20Flowtur%20Pucela%20Fest%20con%20DJ%20ZULU%2C%20DJ%20JUAN%20BURGOS%20y%20DJ%20ORIGIN!&location=C%2F%20Rastrojo%207%2C%20Valladolid" target="_blank" rel="noopener noreferrer" class="btn text-white bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400 w-full">
+                            <i class="fas fa-calendar-plus mr-2"></i>Añadir al Calendario
+                        </a>
+                        <button id="popup-close-btn" class="btn btn-secondary w-full">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -601,4 +619,3 @@
     </script>
 </body>
 </html>
-
