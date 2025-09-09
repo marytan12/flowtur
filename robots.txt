@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /index.html
+Disallow: /legal.html
+Disallow: /terminos.html
+Disallow: /privacidad.html
+
+Sitemap: https://flowtur.es/sitemap.xml
