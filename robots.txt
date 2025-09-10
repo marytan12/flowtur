@@ -5,6 +5,5 @@ Disallow: /index.html
 Disallow: /legal.html
 Disallow: /terminos.html
 Disallow: /privacidad.html
-Host: https://flowtur.es/ 
 
 Sitemap: https://flowtur.es/sitemap.xml
